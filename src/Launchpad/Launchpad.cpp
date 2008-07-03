@@ -1,5 +1,7 @@
 #include "Launchpad.h"
 #include "LaunchpadPlugin.h"
+#include "LaunchpadService.h"
+#include "PluginManager.h"
 #include "Splash.h"
 
 #include <QTimer>
@@ -12,7 +14,7 @@
 #include <QPluginLoader>
 #include <QDir>
 
-class HomePage;
+#include <phonon>
 
 Launchpad::Launchpad(int argc, char** argv)
   : QApplication(argc, argv, QApplication::GuiServer)
@@ -35,42 +37,22 @@ Launchpad::Launchpad(int argc, char** argv)
 
     m_splash->showMessage("Loading plugins...");
 
-    loadPlugins();
+    plugins = new PluginManager(this);
+
+    plugins->loadPlugins();
+
+    //Look, ma! Phonon!
 
     m_launcher->show();
+    Phonon::MediaObject *mediaObject = new Phonon::MediaObject(this);
+    mediaObject->setCurrentSource(Phonon::MediaSource("sounds/startup.wav"));
+    Phonon::AudioOutput *audioOutput = new Phonon::AudioOutput(Phonon::NotificationCategory, this);
+    Phonon::Path path = Phonon::createPath(mediaObject, audioOutput);
+    mediaObject->play();
 }
 
 void
-Launchpad::loadPlugins()
+Launchpad::addPage(QWidget* page, const QString &title)
 {
-  foreach(QObject *plugin, QPluginLoader::staticInstances())
-    loadPlugin(plugin);
-  QDir pluginDir = QDir(applicationDirPath());
-
-  pluginDir.cd("plugins");
-
-  foreach(QString file, pluginDir.entryList(QDir::Files)) {
-    loadPlugin(pluginDir.absoluteFilePath(file));
-  }
-}
-
-void
-Launchpad::loadPlugin(const QString &lib)
-{
-  QPluginLoader loader(lib);
-  QObject *plugin = loader.instance();
-  if (plugin) {
-    loadPlugin(plugin);
-  }
-}
-
-void
-Launchpad::loadPlugin(QObject *plugin)
-{
-  LaunchpadPlugin *iLaunchpad = qobject_cast<LaunchpadPlugin *>(plugin);
-  if (iLaunchpad) {
-    QStringList pages = iLaunchpad->pages();
-    foreach(QString page, pages)
-      m_tabs->addTab(iLaunchpad->requestPage(page),page);
-  }
+  m_tabs->addTab(page, title);
 }

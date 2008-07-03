@@ -1,10 +1,9 @@
 #ifndef GPSSERVICE_H
 #define GPSSERVICE_H
 
-#include <QCoreApplication>
-#include <QDbus>
+#include <LaunchpadService.h>
 
-class GPSService : public QCoreApplication
+class GPSService : public LaunchpadService, QObject
 {
   public:
     GPSService(int argc, char **argv);

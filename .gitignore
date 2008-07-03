@@ -5,3 +5,5 @@
 moc_*
 qrc_*
 Makefile
+*.wav
+*.mp3
