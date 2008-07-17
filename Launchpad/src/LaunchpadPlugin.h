@@ -13,6 +13,7 @@ class LaunchpadPlugin
   public:
     virtual ~LaunchpadPlugin() {}
 
+    virtual QString name() const = 0;
     virtual QStringList pages() const = 0;
     virtual QStringList applets() const = 0;
     virtual QWidget* requestPage(const QString &name) = 0;

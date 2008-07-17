@@ -7,6 +7,27 @@ LaunchpadService::LaunchpadService(QObject* parent)
 }
 
 void
+LaunchpadService::start()
+{
+}
+
+void LaunchpadService::stop()
+{
+}
+
+QVariant
+LaunchpadService::call(const QString &method, const QList<QVariant> &arguments)
+{
+  return QVariant();
+}
+
+QVariant
+LaunchpadService::getData(const QString &key) const
+{
+  return QVariant();
+}
+
+void
 LaunchpadService::setData(const QString &key, const QVariant &newData)
 {
   data[key] = QVariant(newData);
@@ -37,3 +58,5 @@ LaunchpadService::methods() const
 {
   return QStringList();
 }
+
+#include "LaunchpadService.moc"

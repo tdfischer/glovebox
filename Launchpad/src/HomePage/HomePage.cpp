@@ -1,15 +1,20 @@
 #include "HomePage.h"
-#include <Launchpad.h>
 
 #include <QGraphicsScene>
 #include <QGraphicsTextItem>
+#include <QMessageBox>
 
 HomePage::HomePage()
   : LaunchpadPlugin()
 {
   m_scene = new QGraphicsScene();
-  m_test = new QGraphicsTextItem("Test!");
-  m_scene->addItem(m_test);
+  m_scene->addText("Test");
+}
+
+QString
+HomePage::name() const
+{
+  return "HomePage";
 }
 
 QStringList
@@ -29,7 +34,10 @@ HomePage::requestPage(const QString &name)
 {
   Q_UNUSED(name);
   QGraphicsView* view = new QGraphicsView(m_scene);
+  view->show();
   return view;
 }
+
+#include "HomePage.moc"
 
 Q_EXPORT_PLUGIN2(homepage, HomePage)

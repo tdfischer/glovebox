@@ -19,6 +19,8 @@
 Launchpad::Launchpad(int argc, char** argv)
   : QApplication(argc, argv, QApplication::GuiServer)
 {
+    setApplicationName("Glovebox");
+
     m_launcher = new QMainWindow();
 
     m_splash = new Splash();
@@ -44,11 +46,11 @@ Launchpad::Launchpad(int argc, char** argv)
     //Look, ma! Phonon!
 
     m_launcher->show();
-    Phonon::MediaObject *mediaObject = new Phonon::MediaObject(this);
+    /*Phonon::MediaObject *mediaObject = new Phonon::MediaObject(this);
     mediaObject->setCurrentSource(Phonon::MediaSource("sounds/startup.wav"));
     Phonon::AudioOutput *audioOutput = new Phonon::AudioOutput(Phonon::NotificationCategory, this);
     Phonon::Path path = Phonon::createPath(mediaObject, audioOutput);
-    mediaObject->play();
+    mediaObject->play();*/
 }
 
 void
@@ -56,3 +58,5 @@ Launchpad::addPage(QWidget* page, const QString &title)
 {
   m_tabs->addTab(page, title);
 }
+
+#include "Launchpad.moc"

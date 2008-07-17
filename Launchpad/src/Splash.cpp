@@ -69,3 +69,5 @@ Splash::drawContents(QPainter* painter)
   painter->translate(offset,0);
   painter->drawText(rect(), Qt::AlignCenter, m_msg);
 }
+
+#include "Splash.moc"

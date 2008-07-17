@@ -16,20 +16,21 @@ class LaunchpadService : public QObject
   public:
     LaunchpadService(QObject* parent = 0);
     //virtual ~LaunchpadService();
+    virtual QString name() const = 0;
     virtual QStringList sources() const;
     virtual QStringList methods() const;
-    virtual QVariant call(const QString &method, const QList<QVariant> &arguments) = 0;
+    virtual QVariant call(const QString &method, const QList<QVariant> &arguments);
     QVariant query(const QString &key) const;
     void connectData(const QString &key, QObject* endpoint) const;
-    virtual void start() {};
-    virtual void stop() {};
+    virtual void start();
+    virtual void stop();
 
   signals:
     void dataUpdated(const QString &key, const QVariant &data);
 
   protected:
     virtual void setData(const QString &key, const QVariant &data);
-    virtual void getData(const QString &key) const = 0;
+    virtual QVariant getData(const QString &key) const;
 
   private:
     QHash<QString, QVariant> data;
