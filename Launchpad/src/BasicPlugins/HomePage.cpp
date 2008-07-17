@@ -32,7 +32,6 @@ HomePage::applets() const
 QWidget*
 HomePage::requestPage(const QString &name)
 {
-  Q_UNUSED(name);
   QGraphicsView* view = new QGraphicsView(m_scene);
   view->show();
   return view;
