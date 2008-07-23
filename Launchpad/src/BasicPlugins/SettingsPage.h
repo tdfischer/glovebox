@@ -1,24 +1,25 @@
 #ifndef SETTINGSPAGE_H
 #define SETTINGSPAGE_H
 
-#include "LaunchpadPlugin.h"
+#include <LaunchpadPage.h>
 #include <QObject>
-#include <QTabWidget>
 
-class SettingsPage : public LaunchpadPlugin
+class QStackedWidget;
+class QListWidget;
+
+class SettingsPage : public LaunchpadPage
 {
   Q_OBJECT
-  Q_INTERFACES(LaunchpadPlugin);
+  Q_INTERFACES(LaunchpadPage);
 
   public:
     SettingsPage();
-    QString name() const;
-    QStringList pages() const;
-    QStringList applets() const;
-    QWidget* requestPage(const QString &name);
+    QWidget* widget();
 
   private:
-    QTabWidget* m_page;
+    QStackedWidget* m_pages;
+    QListWidget* m_selector;
+    QWidget* m_page;
 };
 
 #endif

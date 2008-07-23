@@ -1,27 +1,23 @@
 #ifndef HOMEPAGE_H
 #define HOMEPAGE_H
 
-#include "LaunchpadPlugin.h"
-#include <QObject>
-#include <QGraphicsView>
+#include <LaunchpadPage.h>
 
-class QGraphicsItem;
+class QGraphicsView;
 class QGraphicsScene;
 
-class HomePage : public LaunchpadPlugin
+class HomePage : public LaunchpadPage
 {
   Q_OBJECT
-  Q_INTERFACES(LaunchpadPlugin);
+  Q_INTERFACES(LaunchpadPage);
 
   public:
     HomePage();
-    QString name() const;
-    QStringList pages() const;
-    QStringList applets() const;
-    QWidget* requestPage(const QString &name);
+    QWidget* widget();
 
   private:
     QGraphicsScene* m_scene;
+    QGraphicsView* m_view;
 };
 
 #endif

@@ -8,6 +8,7 @@ class QMainWindow;
 class QTabWidget;
 
 class Splash;
+class LaunchpadPage;
 
 class PluginManager;
 
@@ -18,7 +19,7 @@ class Launchpad : public QApplication
 
   public:
     Launchpad(int argc, char** argv);
-    void addPage(QWidget* page, const QString &title);
+    void addPage(LaunchpadPage* page);
 
   private:
     Splash* m_splash;

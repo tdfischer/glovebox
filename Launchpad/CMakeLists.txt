@@ -1,2 +1,3 @@
 add_subdirectory(src)
-INCLUDE_DIRECTORIES(include)
+
+install(DIRECTORY icons/ DESTINATION share/icons/)

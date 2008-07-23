@@ -1,6 +1,5 @@
 #include "Launchpad.h"
-#include "LaunchpadPlugin.h"
-#include "LaunchpadService.h"
+#include "LaunchpadPage.h"
 #include "PluginManager.h"
 #include "Splash.h"
 
@@ -14,7 +13,6 @@
 #include <QPluginLoader>
 #include <QDir>
 
-#include <phonon>
 
 Launchpad::Launchpad(int argc, char** argv)
   : QApplication(argc, argv, QApplication::GuiServer)
@@ -54,9 +52,9 @@ Launchpad::Launchpad(int argc, char** argv)
 }
 
 void
-Launchpad::addPage(QWidget* page, const QString &title)
+Launchpad::addPage(LaunchpadPage* page)
 {
-  m_tabs->addTab(page, title);
+  m_tabs->addTab(page->widget(), page->name());
 }
 
 #include "Launchpad.moc"

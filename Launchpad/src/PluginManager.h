@@ -10,15 +10,22 @@
 
 class Launchpad;
 
-class PluginManager
+class PluginManager : public QObject
 {
+
+  Q_OBJECT
+
   public:
     PluginManager(Launchpad* pad);
     void loadPlugin(const QString &lib);
     void loadPlugins();
+    QList<QObject*> loadedPlugins();
+
+  signals:
+    void pluginsLoaded();
 
   protected:
-    void loadPlugin(QObject *plugin);
+    void loadPlugin(QObject* plugin);
 
   private:
     QList<QObject*> pluginList;

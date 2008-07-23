@@ -9,10 +9,19 @@ LaunchpadService::LaunchpadService(QObject* parent)
 void
 LaunchpadService::start()
 {
+  setRunning(true);
 }
 
-void LaunchpadService::stop()
+void
+LaunchpadService::stop()
 {
+  setRunning(false);
+}
+
+void
+LaunchpadService::setRunning(const bool running)
+{
+  m_running = running;
 }
 
 QVariant

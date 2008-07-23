@@ -1,6 +1,6 @@
 #include "PluginManager.h"
 #include "LaunchpadService.h"
-#include "LaunchpadPlugin.h"
+#include "LaunchpadPage.h"
 
 #include <config.h>
 
@@ -13,7 +13,6 @@ PluginManager::PluginManager(Launchpad* pad)
   : services(),
     launchpad(pad)
 {
-  
 }
 
 void
@@ -23,17 +22,19 @@ PluginManager::loadPlugins()
   foreach(QObject *plugin, QPluginLoader::staticInstances())
     loadPlugin(plugin);
 
-  qDebug() << "Looking for plugins in " << PLUGIN_PATH;
+  qDebug() << "Looking for plugins in" << PLUGIN_PATH;
   QDir pluginDir = QDir(PLUGIN_PATH);
 
   foreach(QString file, pluginDir.entryList(QDir::Files))
     loadPlugin(pluginDir.absoluteFilePath(file));
+
+  emit pluginsLoaded();
 }
 
 void
 PluginManager::loadPlugin(const QString &lib)
 {
-  qDebug() << "Loading plugins in " << lib;
+  qDebug() << "Loading plugins in" << lib;
   QPluginLoader loader(lib);
   QObject* plugin = loader.instance();
   if (plugin) {
@@ -42,19 +43,19 @@ PluginManager::loadPlugin(const QString &lib)
 }
 
 void
-PluginManager::loadPlugin(QObject *plugin)
+PluginManager::loadPlugin(QObject* plugin)
 {
-  LaunchpadPlugin *iLaunchpad = qobject_cast<LaunchpadPlugin *>(plugin);
-  if (iLaunchpad) {
-    qDebug() << "Found launchpad page plugin " << iLaunchpad->name();
-    QStringList pages = iLaunchpad->pages();
-    qDebug() << "Available pages: " << pages;
-    foreach(QString page, pages)
-      launchpad->addPage(iLaunchpad->requestPage(page), page);
+  pluginList.append(plugin);
+  LaunchpadPage* iPage = qobject_cast<LaunchpadPage*>(plugin);
+  if (iPage) {
+    qDebug() << "Found launchpad page plugin" << iPage->name();
+    launchpad->addPage(iPage);
   }
-  LaunchpadService *iService = qobject_cast<LaunchpadService *>(plugin);
+  LaunchpadService* iService = qobject_cast<LaunchpadService*>(plugin);
   if (iService) {
-    qDebug() << "Found service plugin " << iService->name();
+    qDebug() << "Found service plugin" << iService->name();
     services->add(iService);
   }
 }
+
+#include "PluginManager.moc"

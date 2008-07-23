@@ -3,38 +3,21 @@
 #include <QGraphicsScene>
 #include <QGraphicsTextItem>
 #include <QMessageBox>
+#include <QGraphicsView>
 
 HomePage::HomePage()
-  : LaunchpadPlugin()
 {
-  m_scene = new QGraphicsScene();
-  m_scene->addText("Test");
-}
-
-QString
-HomePage::name() const
-{
-  return "HomePage";
-}
-
-QStringList
-HomePage::pages() const
-{
-  return QStringList() << "Dashboard";
-}
-
-QStringList
-HomePage::applets() const
-{
-  return QStringList();
+  setName("Dashboard");
 }
 
 QWidget*
-HomePage::requestPage(const QString &name)
+HomePage::widget()
 {
-  QGraphicsView* view = new QGraphicsView(m_scene);
-  view->show();
-  return view;
+  m_scene = new QGraphicsScene();
+  m_scene->addText("Test");
+  m_view = new QGraphicsView(m_scene);
+  m_view->show();
+  return m_view;
 }
 
 #include "HomePage.moc"
