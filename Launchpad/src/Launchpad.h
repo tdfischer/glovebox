@@ -2,15 +2,20 @@
 #define LAUNCHPAD_H
 
 #include <QApplication>
-#include "PluginManager.h"
+#include <QHash>
 
 class QMainWindow;
 class QTabWidget;
+class QStackedWidget;
+class QListView;
+class QDockWidget;
+class QModelIndex;
 
 class Splash;
 class LaunchpadPage;
-
 class PluginManager;
+class ServiceManager;
+class PageListModel;
 
 class Launchpad : public QApplication
 {
@@ -21,10 +26,17 @@ class Launchpad : public QApplication
     Launchpad(int argc, char** argv);
     void addPage(LaunchpadPage* page);
 
+  private slots:
+    void switchPage(const QModelIndex &index);
+    void updatePageBarDirection(Qt::DockWidgetArea area);
+
   private:
     Splash* m_splash;
     QMainWindow* m_launcher;
-    QTabWidget* m_tabs;
+    QStackedWidget* m_pages;
+    QDockWidget* m_pageBar;
+    QListView* m_pageChooser;
+    PageListModel* m_pageList;
     PluginManager* plugins;
 };
 

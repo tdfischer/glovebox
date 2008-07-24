@@ -9,13 +9,16 @@
 #include <QLabel>
 
 SettingsPage::SettingsPage()
+  : LaunchpadPage()
 {
   setName("Settings");
+  //setIcon(QIcon("/opt/Glovebox/share/icons/configure.png"));
 }
 
-QWidget*
-SettingsPage::widget()
+void
+SettingsPage::init()
 {
+  setIcon(QIcon("/opt/Glovebox/share/icons/configure.png"));
   m_page = new QWidget();
   QHBoxLayout* layout = new QHBoxLayout(m_page);
   m_page->setLayout(layout);
@@ -28,7 +31,7 @@ SettingsPage::widget()
 
   layout->addWidget(m_selector);
   layout->addWidget(m_pages);
-  return m_page;
+  setWidget(m_page);
 }
 
 #include "SettingsPage.moc"

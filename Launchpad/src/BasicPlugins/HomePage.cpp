@@ -6,18 +6,19 @@
 #include <QGraphicsView>
 
 HomePage::HomePage()
+  : LaunchpadPage()
 {
   setName("Dashboard");
 }
 
-QWidget*
-HomePage::widget()
+void
+HomePage::init()
 {
   m_scene = new QGraphicsScene();
   m_scene->addText("Test");
   m_view = new QGraphicsView(m_scene);
   m_view->show();
-  return m_view;
+  setWidget(m_view);
 }
 
 #include "HomePage.moc"

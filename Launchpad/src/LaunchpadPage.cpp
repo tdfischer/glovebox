@@ -11,8 +11,8 @@ LaunchpadPage::LaunchpadPage()
 {
 }
 
-QWidget*
-LaunchpadPage::widget()
+void
+LaunchpadPage::init()
 {
   QWidget* panel = new QWidget();
   QWidget* text = new QWidget();
@@ -49,20 +49,45 @@ LaunchpadPage::widget()
 
   message->setWordWrap(true);
 
-  return panel;
+  setWidget(panel);
+}
+
+void
+LaunchpadPage::setWidget(QWidget* widget)
+{
+  m_widget = widget;
+}
+
+QWidget*
+LaunchpadPage::widget() const
+{
+  return m_widget;
 }
 
 void
 LaunchpadPage::setName(const QString &name)
 {
   m_name = QString(name);
-  emit nameChanged(name);
+  emit nameChanged(this, name);
 }
 
 QString
 LaunchpadPage::name() const
 {
   return m_name;
+}
+
+void
+LaunchpadPage::setIcon(const QIcon &icon)
+{
+  m_icon = QIcon(icon);
+  emit iconChanged(this, icon);
+}
+
+QIcon
+LaunchpadPage::icon() const
+{
+  return m_icon;
 }
 
 #include "LaunchpadPage.moc"

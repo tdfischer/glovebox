@@ -14,7 +14,7 @@ class SettingsPage : public LaunchpadPage
 
   public:
     SettingsPage();
-    QWidget* widget();
+    void init();
 
   private:
     QStackedWidget* m_pages;

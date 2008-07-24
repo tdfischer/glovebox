@@ -1,6 +1,8 @@
 set(BasicPlugins_SRCS
   HomePage.cpp
   SettingsPage.cpp
+  TimeService.cpp
+  ClockPage.cpp
 )
 
 qt4_automoc(${BasicPlugins_SRCS})

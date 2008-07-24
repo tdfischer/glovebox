@@ -13,7 +13,7 @@ class HomePage : public LaunchpadPage
 
   public:
     HomePage();
-    QWidget* widget();
+    void init();
 
   private:
     QGraphicsScene* m_scene;

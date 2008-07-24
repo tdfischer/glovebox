@@ -13,6 +13,8 @@ set(Launchpad_SRCS
   PluginManager.cpp
   ServiceManager.cpp
   Splash.cpp
+  PageListModel.cpp
+  PageListDelegate.cpp
 )
 
 set(Launchpad_HEADERS
@@ -22,6 +24,9 @@ set(Launchpad_HEADERS
   Splash.h
   LaunchpadService.h
   LaunchpadPage.h
+  PageListModel.h
+  PageListDelegate.cpp
+  InvalidService.h
 )
 
 qt4_automoc(${Launchpad_SRCS})
