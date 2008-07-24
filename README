@@ -1,0 +1,42 @@
+In this file:
+
+* About Glovebox
+* Licensing
+* Hardware Recomendations
+* Build Requirements
+* Bugs
+
+About Glovebox
+--------------
+
+Glovebox is the project name for the suite of programs and libraries suitable
+for use in a car computing environment. The suite is optimized for use with a
+low-powered computer system and a touchscreen. It is meant to run with
+Qt/Embedded Linux, but normal Qt works just fine. That means that anywhere Qt
+runs, Glovebox can run.
+
+Licensing
+---------
+The Glovebox project is generally covered under version 3 of the GNU Public
+License. Individual components may have different licenses, so when in doubt,
+check the individual files.
+
+Hardware Recomendations
+----------------------
+As Glovebox's use is intended for that of an in-car assistant, a small, low
+horsepower computer is all that is needed. 256MB of RAM, a small solid state
+disk, 1GHz CPU, and a cheap graphics chip should work just fine.
+
+Build Requirements
+-----------------
+To build Glovebox, it is recommended to build in a separate build directory.
+The build system is CMake, so all you have to do is run
+``cmake ../glovebox-source/'' from your build directory, expanding as needed.
+If you are building for Qt/Embedded linux, be sure that you set your PATH
+variable to the proper location.
+
+Bugs
+----
+None yet. The project is too small to have any :)
+
+But when they do crop up, a bug tracker will be up somewhere.
