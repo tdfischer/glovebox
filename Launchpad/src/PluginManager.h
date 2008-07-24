@@ -29,7 +29,6 @@ class PluginManager : public QObject
 
   private:
     QList<QObject*> pluginList;
-    ServiceManager* services;
     Launchpad* launchpad;
 };
 

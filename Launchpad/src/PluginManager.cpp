@@ -10,8 +10,7 @@
 #include <QDebug>
 
 PluginManager::PluginManager(Launchpad* pad)
-  : services(),
-    launchpad(pad)
+  : launchpad(pad)
 {
 }
 
@@ -54,7 +53,7 @@ PluginManager::loadPlugin(QObject* plugin)
   LaunchpadService* iService = qobject_cast<LaunchpadService*>(plugin);
   if (iService) {
     qDebug() << "Found service plugin" << iService->name();
-    services->add(iService);
+    ServiceManager::instance()->add(iService);
   }
 }
 
