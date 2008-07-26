@@ -2,7 +2,7 @@ project(Glovebox)
 cmake_minimum_required(VERSION 2.4.0)
 
 set(LAUNCHPAD_PLUGIN_DIR
-  ${CMAKE_INSTALL_PREFIX}/share/Launchpad/plugins
+  ${CMAKE_INSTALL_PREFIX}/lib/Launchpad/plugins
 )
 
 message("Plugins will be installed to ${LAUNCHPAD_PLUGIN_DIR}")
