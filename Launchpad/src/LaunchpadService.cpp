@@ -45,6 +45,11 @@ LaunchpadService::setName(const QString &name)
   m_name = name;
 }
 
+void
+LaunchpadService::requestUpdate(const QString &key)
+{
+}
+
 QString
 LaunchpadService::name() const
 {
@@ -89,7 +94,7 @@ LaunchpadService::call(const QString &method, const QList<QVariant> &arguments)
 void
 LaunchpadService::setData(const QString &key, const QVariant &newData)
 {
-  //qDebug() << name() << "changed" << key << "to" << newData;
+  qDebug() << name() << "changed" << key << "to" << newData;
   data[key] = QVariant(newData);
   emit dataUpdated(key, newData);
 }
@@ -101,7 +106,7 @@ LaunchpadService::query(const QString &key) const
 }
 
 void
-LaunchpadService::connectData(const QString &key, QObject* endpoint) const
+LaunchpadService::connectData(const QString &key, QObject* endpoint)
 {
   Q_UNUSED(key);
   connect(this,SIGNAL(dataUpdated(const QString, const QVariant)),endpoint,SLOT(dataUpdated(const QString, const QVariant)));
@@ -110,7 +115,7 @@ LaunchpadService::connectData(const QString &key, QObject* endpoint) const
 QStringList
 LaunchpadService::sources() const
 {
-  return QStringList();
+  return data.keys();
 }
 
 QStringList

@@ -43,9 +43,9 @@ class LaunchpadService : public QObject
     virtual QStringList sources() const;
     QVariant query(const QString &key) const;
 
-    virtual void requestUpdate(const QString &key) = 0;
+    virtual void requestUpdate(const QString &key);
 
-    void connectData(const QString &key, QObject* endpoint) const;
+    void connectData(const QString &key, QObject* endpoint);
 
     virtual QStringList methods() const;
     virtual QVariant call(const QString &method, const QList<QVariant> &arguments);
