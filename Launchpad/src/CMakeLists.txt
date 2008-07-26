@@ -1,7 +1,5 @@
 find_package(Qt4 REQUIRED)
 
-message(${QT_EDITION})
-
 include(${QT_USE_FILE})
 
 
@@ -33,7 +31,7 @@ qt4_automoc(${Launchpad_SRCS})
 
 qt4_add_resources(Launchpad_SRCS splash.qrc)
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h
+configure_file(config.h.cmake
 ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR} ${QT_INCLUDES})

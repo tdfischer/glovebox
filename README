@@ -29,11 +29,9 @@ disk, 1GHz CPU, and a cheap graphics chip should work just fine.
 
 Build Requirements
 -----------------
-To build Glovebox, it is recommended to build in a separate build directory.
-The build system is CMake, so all you have to do is run
-``cmake ../glovebox-source/'' from your build directory, expanding as needed.
-If you are building for Qt/Embedded linux, be sure that you set your PATH
-variable to the proper location.
+The build system is CMake, so all you have to do is run ``cmake .''
+from your source directory. If you are building for Qt/Embedded linux
+be sure that you set your PATH variable to the proper location.
 
 Bugs
 ----
