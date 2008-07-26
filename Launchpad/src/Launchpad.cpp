@@ -71,7 +71,6 @@ Launchpad::Launchpad(int argc, char** argv)
     m_pageBar = new QDockWidget(m_launcher);
     connect(m_pageBar, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)), this, SLOT(updatePageBarDirection(Qt::DockWidgetArea)));
 
-    QVBoxLayout* barLayout = new QVBoxLayout(m_pageBar);
     m_pageChooser = new QListView(m_pageBar);
     connect(m_pageChooser, SIGNAL(clicked(const QModelIndex&)), this, SLOT(switchPage(const QModelIndex&)));
 
