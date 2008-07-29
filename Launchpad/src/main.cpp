@@ -17,7 +17,7 @@
  *  along with Glovebox.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "Launchpad.h"
+#include "LaunchpadApp.h"
 #include <QtPlugin>
 
 Q_IMPORT_PLUGIN(homepage)
@@ -27,7 +27,7 @@ Q_IMPORT_PLUGIN(clockpage)
 
 int main(int argc, char **argv)
 {
-    Launchpad app(argc, argv);
+    LaunchpadApp app(argc, argv);
 
     return app.exec();
 }

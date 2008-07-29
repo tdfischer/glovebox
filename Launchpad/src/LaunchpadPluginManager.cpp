@@ -17,7 +17,7 @@
  *  along with Glovebox.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "PluginManager.h"
+#include "LaunchpadPluginManager.h"
 #include "LaunchpadService.h"
 #include "LaunchpadPage.h"
 
@@ -28,13 +28,13 @@
 #include <QApplication>
 #include <QDebug>
 
-PluginManager::PluginManager(Launchpad* pad)
+LaunchpadPluginManager::LaunchpadPluginManager(LaunchpadApp* pad)
   : launchpad(pad)
 {
 }
 
 void
-PluginManager::loadPlugins()
+LaunchpadPluginManager::loadPlugins()
 {
   qDebug() << "Loading static plugins";
   foreach(QObject *plugin, QPluginLoader::staticInstances())
@@ -50,7 +50,7 @@ PluginManager::loadPlugins()
 }
 
 void
-PluginManager::loadPlugin(const QString &lib)
+LaunchpadPluginManager::loadPlugin(const QString &lib)
 {
   qDebug() << "Loading plugins in" << lib;
   QPluginLoader loader(lib);
@@ -61,7 +61,7 @@ PluginManager::loadPlugin(const QString &lib)
 }
 
 void
-PluginManager::loadPlugin(QObject* plugin)
+LaunchpadPluginManager::loadPlugin(QObject* plugin)
 {
   pluginList.append(plugin);
   LaunchpadPage* iPage = qobject_cast<LaunchpadPage*>(plugin);
@@ -76,4 +76,4 @@ PluginManager::loadPlugin(QObject* plugin)
   }
 }
 
-#include "PluginManager.moc"
+#include "LaunchpadPluginManager.moc"

@@ -17,10 +17,10 @@
  *  along with Glovebox.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "Launchpad.h"
+#include "LaunchpadApp.h"
 
 #include "LaunchpadPage.h"
-#include "PluginManager.h"
+#include "LaunchpadPluginManager.h"
 #include "Splash.h"
 #include "PageListModel.h"
 #include "PageListDelegate.h"
@@ -41,8 +41,7 @@
 
 #include <QDebug>
 
-
-Launchpad::Launchpad(int argc, char** argv)
+LaunchpadApp::LaunchpadApp(int argc, char** argv)
   : QApplication(argc, argv, QApplication::GuiServer),
     m_pageList(new PageListModel)
 {
@@ -91,7 +90,7 @@ Launchpad::Launchpad(int argc, char** argv)
 
     m_splash->showMessage("Loading plugins...");
 
-    plugins = new PluginManager(this);
+    plugins = new LaunchpadPluginManager(this);
 
     plugins->loadPlugins();
 
@@ -106,7 +105,7 @@ Launchpad::Launchpad(int argc, char** argv)
 }
 
 void
-Launchpad::addPage(LaunchpadPage* page)
+LaunchpadApp::addPage(LaunchpadPage* page)
 {
   page->init();
   m_pages->addWidget(page->widget());
@@ -114,7 +113,7 @@ Launchpad::addPage(LaunchpadPage* page)
 }
 
 void
-Launchpad::updatePageBarDirection(Qt::DockWidgetArea area)
+LaunchpadApp::updatePageBarDirection(Qt::DockWidgetArea area)
 {
   if (area == Qt::LeftDockWidgetArea || area == Qt::RightDockWidgetArea)
     m_pageChooser->setFlow(QListView::TopToBottom);
@@ -123,10 +122,10 @@ Launchpad::updatePageBarDirection(Qt::DockWidgetArea area)
 }
 
 void
-Launchpad::switchPage(const QModelIndex &index)
+LaunchpadApp::switchPage(const QModelIndex &index)
 {
   qDebug() << "Switching to page" << index.data();
   m_pages->setCurrentWidget(index.data(PageListModel::WidgetRole).value<QWidget*>());
 }
 
-#include "Launchpad.moc"
+#include "LaunchpadApp.moc"

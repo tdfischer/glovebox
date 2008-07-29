@@ -24,12 +24,10 @@
 #include <QString>
 #include "LaunchpadService.h"
 
-//class PluginManager;
-
 class ServiceManager
 {
 
-  friend class PluginManager;
+  friend class LaunchpadPluginManager;
 
   public:
     static ServiceManager *instance() {

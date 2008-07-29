@@ -1,5 +1,5 @@
-#ifndef PLUGINMANAGER_H
-#define PLUGINMANAGER_H
+#ifndef LAUNCHPAD_H
+#define LAUNCHPAD_H
 
 /**
  * Copyright (C) 2008 Trever Fischer <wm161@wm161.net>
@@ -20,35 +20,43 @@
  *  along with Glovebox.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "Launchpad.h"
-#include "ServiceManager.h"
+#include <QApplication>
+#include <QHash>
 
-#include <QString>
-#include <QObject>
-#include <QList>
+class QMainWindow;
+class QTabWidget;
+class QStackedWidget;
+class QListView;
+class QDockWidget;
+class QModelIndex;
 
-class Launchpad;
+class Splash;
+class LaunchpadPage;
+class ServiceManager;
+class PageListModel;
+class LaunchpadPluginManager;
 
-class PluginManager : public QObject
+class LaunchpadApp : public QApplication
 {
 
   Q_OBJECT
 
   public:
-    PluginManager(Launchpad* pad);
-    void loadPlugin(const QString &lib);
-    void loadPlugins();
-    QList<QObject*> loadedPlugins();
+    LaunchpadApp(int argc, char** argv);
+    void addPage(LaunchpadPage* page);
 
-  signals:
-    void pluginsLoaded();
-
-  protected:
-    void loadPlugin(QObject* plugin);
+  private slots:
+    void switchPage(const QModelIndex &index);
+    void updatePageBarDirection(Qt::DockWidgetArea area);
 
   private:
-    QList<QObject*> pluginList;
-    Launchpad* launchpad;
+    Splash* m_splash;
+    QMainWindow* m_launcher;
+    QStackedWidget* m_pages;
+    QDockWidget* m_pageBar;
+    QListView* m_pageChooser;
+    PageListModel* m_pageList;
+    LaunchpadPluginManager* plugins;
 };
 
 #endif
