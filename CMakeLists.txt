@@ -15,3 +15,4 @@ include_directories(${LAUNCHPAD_INCLUDES})
 
 add_subdirectory(Launchpad)
 add_subdirectory(GpsService)
+add_subdirectory(MapPage)
