@@ -25,6 +25,8 @@
 #include <QSplashScreen>
 #include <QTimeLine>
 
+#include "Launchpad.h"
+
 namespace Launchpad
 {
 

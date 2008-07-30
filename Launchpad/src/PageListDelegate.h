@@ -22,6 +22,8 @@
 
 #include <QAbstractItemDelegate>
 
+#include "Launchpad.h"
+
 namespace Launchpad
 {
 
