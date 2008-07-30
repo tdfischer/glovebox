@@ -22,6 +22,9 @@
 
 #include <QAbstractItemDelegate>
 
+namespace Launchpad
+{
+
 class PageListDelegate : public QAbstractItemDelegate
 {
   Q_OBJECT
@@ -33,5 +36,7 @@ class PageListDelegate : public QAbstractItemDelegate
 
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
 };
+
+}
 
 #endif

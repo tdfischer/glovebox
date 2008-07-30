@@ -27,6 +27,11 @@
 
 class QStringList;
 
+#include "Launchpad.h"
+
+namespace Launchpad
+{
+
 class LaunchpadService : public QObject
 {
 
@@ -70,6 +75,8 @@ class LaunchpadService : public QObject
     QString m_name;
 };
 
-Q_DECLARE_INTERFACE(LaunchpadService, "net.wm161.Glovebox.LaunchpadService/1.0")
+}
+
+Q_DECLARE_INTERFACE(Launchpad::LaunchpadService, "net.wm161.Glovebox.LaunchpadService/1.0")
 
 #endif

@@ -43,6 +43,11 @@ PageListDelegate::paint(QPainter* painter, const QStyleOptionViewItem &option, c
 
   painter->save();
 
+  if (option.state == QStyle::State_Selected) {
+    painter->setBrush(option.palette.color(QPalette::Highlight));
+    painter->drawRect(option.rect);
+  }
+
   QGradient backgroundGradient(QLinearGradient(0,0,0,1));
   backgroundGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
   backgroundGradient.setColorAt(0, option.palette.color(QPalette::Midlight));
@@ -59,9 +64,6 @@ PageListDelegate::paint(QPainter* painter, const QStyleOptionViewItem &option, c
   painter->setPen(borderPen);
   painter->setBrush(backgroundBrush);
   painter->drawRoundedRect(option.rect, 5, 5);
-
-  /*painter->setBrush(backgroundBrush);
-  painter->drawRoundedRect(option.rect.adjusted(2, 2, -2, -2), 5, 5);*/
 
   painter->restore();
 

@@ -24,10 +24,13 @@
 #include <QString>
 #include "LaunchpadService.h"
 
+namespace Launchpad
+{
+
 class ServiceManager
 {
 
-  friend class LaunchpadPluginManager;
+  friend class PluginManager;
 
   public:
     static ServiceManager *instance() {
@@ -55,5 +58,7 @@ class ServiceManager
     static ServiceManager *m_instance;
     QMap<QString, LaunchpadService*> serviceList;
 };
+
+}
 
 #endif

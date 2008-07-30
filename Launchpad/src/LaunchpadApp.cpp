@@ -20,7 +20,7 @@
 #include "LaunchpadApp.h"
 
 #include "LaunchpadPage.h"
-#include "LaunchpadPluginManager.h"
+#include "PluginManager.h"
 #include "Splash.h"
 #include "PageListModel.h"
 #include "PageListDelegate.h"
@@ -90,7 +90,7 @@ LaunchpadApp::LaunchpadApp(int argc, char** argv)
 
     m_splash->showMessage("Loading plugins...");
 
-    plugins = new LaunchpadPluginManager(this);
+    plugins = new PluginManager(this);
 
     plugins->loadPlugins();
 

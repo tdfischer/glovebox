@@ -29,7 +29,7 @@ class QListWidget;
 class SettingsPage : public LaunchpadPage
 {
   Q_OBJECT
-  Q_INTERFACES(LaunchpadPage);
+  Q_INTERFACES(Launchpad::LaunchpadPage);
 
   public:
     SettingsPage();

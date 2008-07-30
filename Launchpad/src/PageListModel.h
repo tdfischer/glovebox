@@ -23,6 +23,9 @@
 #include <QAbstractListModel>
 #include <QIcon>
 
+namespace Launchpad
+{
+
 class LaunchpadPage;
 
 class PageListModel : public QAbstractListModel
@@ -43,5 +46,7 @@ class PageListModel : public QAbstractListModel
   private:
     QList<LaunchpadPage*> m_pages;
 };
+
+}
 
 #endif

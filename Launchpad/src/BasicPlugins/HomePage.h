@@ -28,7 +28,7 @@ class QGraphicsScene;
 class HomePage : public LaunchpadPage
 {
   Q_OBJECT
-  Q_INTERFACES(LaunchpadPage);
+  Q_INTERFACES(Launchpad::LaunchpadPage);
 
   public:
     HomePage();

@@ -28,15 +28,18 @@
 #include <QObject>
 #include <QList>
 
+namespace Launchpad
+{
+
 class LaunchpadApp;
 
-class LaunchpadPluginManager : public QObject
+class PluginManager : public QObject
 {
 
   Q_OBJECT
 
   public:
-    LaunchpadPluginManager(LaunchpadApp* pad);
+    PluginManager(LaunchpadApp* pad);
     void loadPlugin(const QString &lib);
     void loadPlugins();
     QList<QObject*> loadedPlugins();
@@ -51,5 +54,7 @@ class LaunchpadPluginManager : public QObject
     QList<QObject*> pluginList;
     LaunchpadApp* launchpad;
 };
+
+}
 
 #endif

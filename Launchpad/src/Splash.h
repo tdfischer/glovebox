@@ -25,6 +25,9 @@
 #include <QSplashScreen>
 #include <QTimeLine>
 
+namespace Launchpad
+{
+
 class Splash : public QSplashScreen
 {
   Q_OBJECT
@@ -46,5 +49,7 @@ class Splash : public QSplashScreen
     QFont m_font;
     QTimeLine* m_fader;
 };
+
+}
 
 #endif

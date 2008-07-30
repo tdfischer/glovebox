@@ -27,6 +27,11 @@
 #include <QString>
 #include <QIcon>
 
+#include "Launchpad.h"
+
+namespace Launchpad
+{
+
 /**
  * A page for use in the Launchpad interface
  *
@@ -81,6 +86,8 @@ class LaunchpadPage : public QObject
 
 };
 
-Q_DECLARE_INTERFACE(LaunchpadPage, "net.wm161.Glovebox.LaunchpadPage/1.0")
+}
+
+Q_DECLARE_INTERFACE(Launchpad::LaunchpadPage, "net.wm161.Glovebox.LaunchpadPage/1.0")
 
 #endif

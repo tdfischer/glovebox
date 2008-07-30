@@ -30,11 +30,14 @@ class QListView;
 class QDockWidget;
 class QModelIndex;
 
+namespace Launchpad
+{
+
 class Splash;
 class LaunchpadPage;
 class ServiceManager;
 class PageListModel;
-class LaunchpadPluginManager;
+class PluginManager;
 
 class LaunchpadApp : public QApplication
 {
@@ -56,7 +59,9 @@ class LaunchpadApp : public QApplication
     QDockWidget* m_pageBar;
     QListView* m_pageChooser;
     PageListModel* m_pageList;
-    LaunchpadPluginManager* plugins;
+    PluginManager* plugins;
 };
+
+}
 
 #endif

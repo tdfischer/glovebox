@@ -31,7 +31,7 @@ class QTimer;
 class TimeService : public LaunchpadService
 {
   Q_OBJECT
-  Q_INTERFACES(LaunchpadService)
+  Q_INTERFACES(Launchpad::LaunchpadService)
 
   public:
     TimeService();
