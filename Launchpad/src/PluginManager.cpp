@@ -20,6 +20,7 @@
 #include "PluginManager.h"
 #include "LaunchpadService.h"
 #include "LaunchpadPage.h"
+#include "PageListModel.h"
 
 #include <config.h>
 
@@ -28,8 +29,11 @@
 #include <QApplication>
 #include <QDebug>
 
-PluginManager::PluginManager(LaunchpadApp* pad)
-  : launchpad(pad)
+PluginManager *PluginManager::m_instance = 0;
+
+PluginManager::PluginManager()
+  : QObject(),
+    m_pageList(new PageListModel)
 {
 }
 
@@ -63,17 +67,25 @@ PluginManager::loadPlugin(const QString &lib)
 void
 PluginManager::loadPlugin(QObject* plugin)
 {
+  static LaunchpadApp* launchpad = static_cast<LaunchpadApp*> qApp;
+
   pluginList.append(plugin);
   LaunchpadPage* iPage = qobject_cast<LaunchpadPage*>(plugin);
   if (iPage) {
     qDebug() << "Found launchpad page plugin" << iPage->name();
-    launchpad->addPage(iPage);
+    m_pageList->addPage(iPage);
   }
   LaunchpadService* iService = qobject_cast<LaunchpadService*>(plugin);
   if (iService) {
     qDebug() << "Found service plugin" << iService->name();
     ServiceManager::instance()->add(iService);
   }
+}
+
+PageListModel*
+PluginManager::pageModel() const
+{
+  return m_pageList;
 }
 
 #include "PluginManager.moc"

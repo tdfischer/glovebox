@@ -23,6 +23,7 @@
 
 #include "LaunchpadApp.h"
 #include "ServiceManager.h"
+#include "PageListModel.h"
 
 #include <QString>
 #include <QObject>
@@ -39,10 +40,20 @@ class PluginManager : public QObject
   Q_OBJECT
 
   public:
-    PluginManager(LaunchpadApp* pad);
+    static PluginManager *instance() {
+      if (m_instance == 0)
+        m_instance = new PluginManager();
+      return (m_instance);
+    }
+
+    /*~PluginManager() {
+      m_instance = 0;
+    }*/
+
     void loadPlugin(const QString &lib);
     void loadPlugins();
     QList<QObject*> loadedPlugins();
+    PageListModel* pageModel() const;
 
   signals:
     void pluginsLoaded();
@@ -51,8 +62,10 @@ class PluginManager : public QObject
     void loadPlugin(QObject* plugin);
 
   private:
+    PluginManager();
+    static PluginManager *m_instance;
     QList<QObject*> pluginList;
-    LaunchpadApp* launchpad;
+    PageListModel* m_pageList;
 };
 
 }
