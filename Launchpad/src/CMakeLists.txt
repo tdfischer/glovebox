@@ -7,8 +7,9 @@ set(Launchpad_SRCS
   LaunchpadApp.cpp
   LaunchpadService.cpp
   main.cpp
+  Launcher.cpp
   LaunchpadPage.cpp
-  LaunchpadPluginManager.cpp
+  PluginManager.cpp
   ServiceManager.cpp
   Splash.cpp
   PageListModel.cpp
@@ -17,8 +18,9 @@ set(Launchpad_SRCS
 
 set(Launchpad_HEADERS
   LaunchpadApp.h
-  LaunchpadPluginManager.h
+  PluginManager.h
   ServiceManager.h
+  Launcher.h
   Splash.h
   LaunchpadService.h
   LaunchpadPage.h

@@ -30,7 +30,9 @@ PageListModel::PageListModel(QObject* parent)
 void
 PageListModel::addPage(LaunchpadPage* page)
 {
+  page->init();
   m_pages.append(page);
+  emit pageAdded(page);
 }
 
 int

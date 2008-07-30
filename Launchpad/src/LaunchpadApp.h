@@ -30,6 +30,8 @@ class QListView;
 class QDockWidget;
 class QModelIndex;
 
+#include "Launchpad.h"
+
 namespace Launchpad
 {
 
@@ -38,6 +40,7 @@ class LaunchpadPage;
 class ServiceManager;
 class PageListModel;
 class PluginManager;
+class Launcher;
 
 class LaunchpadApp : public QApplication
 {
@@ -46,19 +49,10 @@ class LaunchpadApp : public QApplication
 
   public:
     LaunchpadApp(int argc, char** argv);
-    void addPage(LaunchpadPage* page);
-
-  private slots:
-    void switchPage(const QModelIndex &index);
-    void updatePageBarDirection(Qt::DockWidgetArea area);
 
   private:
     Splash* m_splash;
-    QMainWindow* m_launcher;
-    QStackedWidget* m_pages;
-    QDockWidget* m_pageBar;
-    QListView* m_pageChooser;
-    PageListModel* m_pageList;
+    Launcher* m_launcher;
     PluginManager* plugins;
 };
 

@@ -43,6 +43,9 @@ class PageListModel : public QAbstractListModel
 
     void addPage(LaunchpadPage* page);
 
+  signals:
+    void pageAdded(LaunchpadPage* page);
+
   private:
     QList<LaunchpadPage*> m_pages;
 };
