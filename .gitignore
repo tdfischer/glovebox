@@ -7,3 +7,4 @@ qrc_*
 Makefile
 *.wav
 *.mp3
+.directory
