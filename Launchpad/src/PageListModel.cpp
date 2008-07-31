@@ -60,4 +60,10 @@ PageListModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
+LaunchpadPage*
+PageListModel::page(const QModelIndex &index) const
+{
+  return m_pages.at(index.row());
+}
+
 #include "PageListModel.moc"

@@ -14,6 +14,7 @@ namespace Launchpad
 
 class PageListModel;
 class LaunchpadPage;
+class PageManager;
 
 class Launcher : public QMainWindow
 {
@@ -21,6 +22,7 @@ class Launcher : public QMainWindow
 
   public:
     Launcher(QWidget* parent = 0);
+    void addPage(LaunchpadPage* page);
 
   private slots:
     void switchPage(const QModelIndex &index);
@@ -31,7 +33,7 @@ class Launcher : public QMainWindow
     QStackedWidget* m_pages;
     QDockWidget* m_pageBar;
     QListView* m_pageChooser;
-    PageListModel* m_pageList;
+    PageManager* m_pager;
 };
 
 }

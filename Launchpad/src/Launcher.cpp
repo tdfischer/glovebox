@@ -11,10 +11,12 @@
 #include "PluginManager.h"
 #include "PageListDelegate.h"
 #include "LaunchpadPage.h"
+#include "PageManager.h"
 
 Launcher::Launcher(QWidget* parent)
   : QMainWindow(parent, Qt::Window | Qt::FramelessWindowHint)
 {
+  m_pager = new PageManager(this);
   resize(qApp->desktop()->screenGeometry().size());
   m_pages = new QStackedWidget(this);
   m_pageBar = new QDockWidget(this);
@@ -28,14 +30,14 @@ Launcher::Launcher(QWidget* parent)
 
   m_pageChooser->setResizeMode(QListView::Adjust);
   m_pageChooser->setMovement(QListView::Snap);
-  m_pageChooser->setModel(PluginManager::instance()->pageModel());
+  m_pageChooser->setModel(m_pager->model());
   m_pageChooser->setItemDelegate(new PageListDelegate(this));
   m_pageChooser->setSpacing(5);
 
   connect(m_pageBar, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)), this, SLOT(updatePageBarDirection(Qt::DockWidgetArea)));
   connect(m_pageChooser, SIGNAL(clicked(const QModelIndex&)), this, SLOT(switchPage(const QModelIndex&)));
 
-  connect(PluginManager::instance()->pageModel(), SIGNAL(pageAdded(LaunchpadPage*)), this, SLOT(pageAdded(LaunchpadPage*)));
+  connect(m_pager->model(), SIGNAL(pageAdded(LaunchpadPage*)), this, SLOT(pageAdded(LaunchpadPage*)));
 }
 
 void
@@ -45,6 +47,12 @@ Launcher::updatePageBarDirection(Qt::DockWidgetArea area)
     m_pageChooser->setFlow(QListView::TopToBottom);
   else
     m_pageChooser->setFlow(QListView::LeftToRight);
+}
+
+void
+Launcher::addPage(LaunchpadPage* page)
+{
+  m_pages->addWidget(page->widget());
 }
 
 void
@@ -58,6 +66,9 @@ Launcher::switchPage(const QModelIndex &index)
 {
   qDebug() << "Switching to page" << index.data();
   m_pages->setCurrentWidget(index.data(PageListModel::WidgetRole).value<QWidget*>());
+  /*foreach(QVariant dock, index.data(PageListModel::DockRole).toList()) {
+    qDebug() << dock;
+  }*/
 }
 
 #include "Launcher.moc"

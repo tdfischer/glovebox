@@ -26,6 +26,7 @@
 #include <QWidget>
 #include <QString>
 #include <QIcon>
+#include <QDockWidget>
 
 #include "Launchpad.h"
 
@@ -46,10 +47,15 @@ class LaunchpadPage : public QObject
 
   public:
     LaunchpadPage();
+    virtual ~LaunchpadPage();
     QString name() const;
     void setName(const QString &name);
     void setIcon(const QIcon &icon);
     void setWidget(QWidget* widget);
+
+    void addDock(QDockWidget* dock);
+    void removeDock(QDockWidget* dock);
+    QList<QDockWidget*> docks() const;
 
     QIcon icon() const;
 
@@ -62,6 +68,10 @@ class LaunchpadPage : public QObject
      * Returns the QWidget that this page is made of.
      */
     QWidget* widget() const;
+
+  public slots:
+    void hideDocks();
+    void showDocks();
 
   signals:
     /**
@@ -78,12 +88,21 @@ class LaunchpadPage : public QObject
      * Emitted when the page's widget is changed
      */
     void widgetChanged(LaunchpadPage* page, QWidget* widget);
+    
+    /**
+     * Emitted when the page adds a dock
+     */
+    void dockAdded(LaunchpadPage* page, QDockWidget* widget);
+    
+  protected:
+    void hideEvent(QHideEvent* event);
+    void showEvent(QShowEvent* event);
 
   private:
     QString m_name;
     QIcon m_icon;
     QWidget* m_widget;
-
+    QList<QDockWidget*> m_dockWidgets;
 };
 
 }

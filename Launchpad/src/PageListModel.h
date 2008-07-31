@@ -40,6 +40,7 @@ class PageListModel : public QAbstractListModel
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;
+    LaunchpadPage* page(const QModelIndex &index) const;
 
     void addPage(LaunchpadPage* page);
 

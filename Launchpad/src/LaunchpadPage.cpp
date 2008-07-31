@@ -27,6 +27,11 @@
 #include <QIcon>
 
 LaunchpadPage::LaunchpadPage()
+  : QObject()
+{
+}
+
+LaunchpadPage::~LaunchpadPage()
 {
 }
 
@@ -69,6 +74,54 @@ LaunchpadPage::init()
   message->setWordWrap(true);
 
   setWidget(panel);
+}
+
+void
+LaunchpadPage::addDock(QDockWidget* dock)
+{
+  m_dockWidgets.append(dock);
+  emit dockAdded(this, dock);
+}
+
+void
+LaunchpadPage::removeDock(QDockWidget* dock)
+{
+  m_dockWidgets.removeOne(dock);
+}
+
+QList<QDockWidget*>
+LaunchpadPage::docks() const
+{
+  return m_dockWidgets;
+}
+
+//TODO: Save visibility states
+void
+LaunchpadPage::hideDocks()
+{
+  foreach(QDockWidget* dock, m_dockWidgets) {
+    dock->hide();
+  }
+}
+
+void
+LaunchpadPage::showDocks()
+{
+  foreach(QDockWidget* dock, m_dockWidgets) {
+    dock->show();
+  }
+}
+
+void
+LaunchpadPage::hideEvent(QHideEvent* event)
+{
+  hideDocks();
+}
+
+void
+LaunchpadPage::showEvent(QShowEvent* event)
+{
+  showDocks();
 }
 
 void
