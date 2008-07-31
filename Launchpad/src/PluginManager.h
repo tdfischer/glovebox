@@ -34,38 +34,38 @@ namespace Launchpad
 
 class LaunchpadApp;
 
+/**
+ * @brief The PluginManager is a globaly available class that handles Plugin management.
+ * 
+ * The purpose of the PluginManager class is to provide a central interface to all components
+ * and even other plugins to find plugins that support a specific interface. When Launchpad
+ */
+
 class PluginManager : public QObject
 {
 
   Q_OBJECT
 
   public:
-    static PluginManager *instance() {
+    static PluginManager* instance() {
       if (m_instance == 0)
         m_instance = new PluginManager();
-      return (m_instance);
+      return m_instance;
     }
-
-    /*~PluginManager() {
-      m_instance = 0;
-    }*/
 
     void loadPlugin(const QString &lib);
     void loadPlugins();
-    QList<QObject*> loadedPlugins();
-    PageListModel* pageModel() const;
+    QList<QObject*> loadedPlugins() const;
 
   signals:
     void pluginsLoaded();
-
-  protected:
-    void loadPlugin(QObject* plugin);
+    void pluginLoaded(QObject*);
 
   private:
     PluginManager();
-    static PluginManager *m_instance;
+    static PluginManager* m_instance;
     QList<QObject*> pluginList;
-    PageListModel* m_pageList;
+    //QMap<QString, QObject*> m_capabilityMap;
 };
 
 }

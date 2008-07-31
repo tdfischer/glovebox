@@ -53,7 +53,6 @@ class LaunchpadApp : public QApplication
   private:
     Splash* m_splash;
     Launcher* m_launcher;
-    PluginManager* plugins;
 };
 
 }

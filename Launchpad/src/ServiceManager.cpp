@@ -19,12 +19,15 @@
 
 #include "ServiceManager.h"
 #include "InvalidService.h"
+#include "PluginManager.h"
+#include <QDebug>
 
 ServiceManager *ServiceManager::m_instance = 0;
 
 ServiceManager::ServiceManager()
   : serviceList()
 {
+  connect(PluginManager::instance(), SIGNAL(pluginLoaded(QObject*)), this, SLOT(loadPlugin(QObject*)));
 }
 
 void
@@ -32,6 +35,16 @@ ServiceManager::add(LaunchpadService* service)
 {
   serviceList.insert(service->name(),service);
   service->start();
+}
+
+void
+ServiceManager::loadPlugin(QObject* plugin)
+{
+  LaunchpadService* iService = qobject_cast<LaunchpadService*>(plugin);
+  if (iService) {
+    qDebug() << "Found service plugin" << iService->name();
+    add(iService);
+  }
 }
 
 LaunchpadService*
@@ -49,3 +62,5 @@ ServiceManager::findService(const QString& name) const
   else
     return serviceList[name];
 }
+
+#include "ServiceManager.moc"

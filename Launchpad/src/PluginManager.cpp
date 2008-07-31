@@ -32,8 +32,7 @@
 PluginManager *PluginManager::m_instance = 0;
 
 PluginManager::PluginManager()
-  : QObject(),
-    m_pageList(new PageListModel)
+  : QObject()
 {
 }
 
@@ -41,8 +40,10 @@ void
 PluginManager::loadPlugins()
 {
   qDebug() << "Loading static plugins";
-  foreach(QObject *plugin, QPluginLoader::staticInstances())
-    loadPlugin(plugin);
+  foreach(QObject *plugin, QPluginLoader::staticInstances()) {
+    pluginList.append(plugin);
+    emit pluginLoaded(plugin);
+  }
 
   qDebug() << "Looking for plugins in" << PLUGIN_PATH;
   QDir pluginDir = QDir(PLUGIN_PATH);
@@ -60,32 +61,16 @@ PluginManager::loadPlugin(const QString &lib)
   QPluginLoader loader(lib);
   QObject* plugin = loader.instance();
   if (plugin) {
-    loadPlugin(plugin);
+    pluginList.append(plugin);
+    emit pluginLoaded(plugin);
+    //loadPlugin(plugin);
   }
 }
 
-void
-PluginManager::loadPlugin(QObject* plugin)
+QList<QObject*>
+PluginManager::loadedPlugins() const
 {
-  static LaunchpadApp* launchpad = static_cast<LaunchpadApp*> qApp;
-
-  pluginList.append(plugin);
-  LaunchpadPage* iPage = qobject_cast<LaunchpadPage*>(plugin);
-  if (iPage) {
-    qDebug() << "Found launchpad page plugin" << iPage->name();
-    m_pageList->addPage(iPage);
-  }
-  LaunchpadService* iService = qobject_cast<LaunchpadService*>(plugin);
-  if (iService) {
-    qDebug() << "Found service plugin" << iService->name();
-    ServiceManager::instance()->add(iService);
-  }
-}
-
-PageListModel*
-PluginManager::pageModel() const
-{
-  return m_pageList;
+  return pluginList;
 }
 
 #include "PluginManager.moc"

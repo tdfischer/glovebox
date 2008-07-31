@@ -27,8 +27,10 @@
 namespace Launchpad
 {
 
-class ServiceManager
+class ServiceManager : public QObject
 {
+
+  Q_OBJECT
 
   friend class PluginManager;
 
@@ -52,6 +54,9 @@ class ServiceManager
   protected:
     LaunchpadService* findService(const QString &name) const;
     void add(LaunchpadService* service);
+
+  private slots:
+    void loadPlugin(QObject*);
 
   private:
     ServiceManager();

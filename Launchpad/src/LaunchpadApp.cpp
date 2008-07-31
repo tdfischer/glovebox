@@ -49,13 +49,17 @@ LaunchpadApp::LaunchpadApp(int argc, char** argv)
 
     m_splash = new Splash();
     m_splash->show();
-    m_splash->showMessage("Starting up...");
+    m_splash->showMessage("Starting up");
 
     m_launcher = new Launcher();
 
     m_splash->finish(m_launcher);
+    
+    m_splash->showMessage("Building plugin loaders");
+    PluginManager::instance();
+    ServiceManager::instance();
 
-    m_splash->showMessage("Loading plugins...");
+    m_splash->showMessage("Loading plugins");
 
     PluginManager::instance()->loadPlugins();
 
