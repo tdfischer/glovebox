@@ -48,7 +48,7 @@ LaunchpadPage::init()
 
 
   QLabel* iconView = new QLabel(panel);
-  QPixmap icon("/opt/Glovebox/share/icons/help-hint.png");
+  QPixmap icon("/opt/Glovebox/share/icons/help-hint.png"); //TODO: Icon manager
   iconView->setPixmap(icon);
 
   iconLayout->addWidget(iconView);
@@ -80,7 +80,7 @@ void
 LaunchpadPage::addDock(QDockWidget* dock)
 {
   m_dockWidgets.append(dock);
-  emit dockAdded(this, dock);
+  emit dockAdded(dock);
 }
 
 void

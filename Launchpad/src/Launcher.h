@@ -28,6 +28,7 @@ class Launcher : public QMainWindow
     void switchPage(const QModelIndex &index);
     void updatePageBarDirection(Qt::DockWidgetArea area);
     void pageAdded(LaunchpadPage*);
+    void addDock(QDockWidget*);
 
   private:
     QStackedWidget* m_pages;

@@ -59,6 +59,16 @@ void
 Launcher::pageAdded(LaunchpadPage* page)
 {
   m_pages->addWidget(page->widget());
+  connect(page, SIGNAL(dockAdded(QDockWidget* widget)),this, SLOT(addDock(QDockWidget* widget)));
+  foreach(QDockWidget* dock, page->docks()) {
+    addDock(dock);
+  }
+}
+
+void
+Launcher::addDock(QDockWidget* widget)
+{
+  addDockWidget(Qt::RightDockWidgetArea, widget);
 }
 
 void

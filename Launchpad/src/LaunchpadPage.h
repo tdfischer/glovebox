@@ -92,7 +92,7 @@ class LaunchpadPage : public QObject
     /**
      * Emitted when the page adds a dock
      */
-    void dockAdded(LaunchpadPage* page, QDockWidget* widget);
+    void dockAdded(QDockWidget* widget);
     
   protected:
     void hideEvent(QHideEvent* event);
