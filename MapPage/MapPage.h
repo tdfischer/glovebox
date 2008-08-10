@@ -22,16 +22,14 @@
 
 #include <LaunchpadPage.h>
 
-//Voodoo magic begins
-#define PluginManager Marble::PluginManager
 #include <marble/MarbleWidget.h>
-#undef PluginManager
-//Voodoo magic stops
+#include <marble/MarbleControlBox.h>
+#include <marble/MapThemeManager.h>
 
 class MapPage : public LaunchpadPage {
 
   Q_OBJECT
-  Q_INTERFACES(LaunchpadPage)
+  Q_INTERFACES(Launchpad::LaunchpadPage)
 
   public:
     MapPage();

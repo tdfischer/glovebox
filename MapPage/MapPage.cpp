@@ -19,18 +19,25 @@
 
 #include "MapPage.h"
 
+#include <QWidget>
+#include <QSplitter>
+#include <QLabel>
+#include <marble/MarbleControlBox.h>
+
 MapPage::MapPage()
   : LaunchpadPage()
 {
-  setName("GPS");
-  map = new MarbleWidget();
-  map->setMapThemeId("earth/srtm/srtm.dgml");
-  setWidget(map);
+  setName("Map");
 }
 
 void
 MapPage::init()
 {
+  map = new MarbleWidget;
+  map->setMapThemeId("earth/openstreetmap/openstreetmap.dgml");
+  map->setShowGps(true);
+
+  setWidget(map);
 }
 
 Q_EXPORT_PLUGIN2(gpspage, MapPage)
