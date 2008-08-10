@@ -32,7 +32,8 @@
 PluginManager *PluginManager::m_instance = 0;
 
 PluginManager::PluginManager()
-  : QObject()
+  : QObject(),
+    m_pluginsLoaded(false)
 {
 }
 
@@ -51,6 +52,7 @@ PluginManager::loadPlugins()
   foreach(QString file, pluginDir.entryList(QDir::Files))
     loadPlugin(pluginDir.absoluteFilePath(file));
 
+  m_pluginsLoaded = true;
   emit pluginsLoaded();
 }
 
@@ -64,7 +66,15 @@ PluginManager::loadPlugin(const QString &lib)
     pluginList.append(plugin);
     emit pluginLoaded(plugin);
     //loadPlugin(plugin);
+  } else {
+    qWarning() << "Error while loading plugin:" << loader.errorString();
   }
+}
+
+bool
+PluginManager::pluginsLoaded() const
+{
+  return m_pluginsLoaded;
 }
 
 QList<QObject*>

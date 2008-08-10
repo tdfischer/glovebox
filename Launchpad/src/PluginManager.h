@@ -56,6 +56,7 @@ class PluginManager : public QObject
     void loadPlugin(const QString &lib);
     void loadPlugins();
     QList<QObject*> loadedPlugins() const;
+    bool pluginsLoaded() const;
 
   signals:
     void pluginsLoaded();
@@ -65,6 +66,7 @@ class PluginManager : public QObject
     PluginManager();
     static PluginManager* m_instance;
     QList<QObject*> pluginList;
+    bool m_pluginsLoaded;
     //QMap<QString, QObject*> m_capabilityMap;
 };
 
