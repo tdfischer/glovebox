@@ -23,6 +23,7 @@
 #include <QSplitter>
 #include <QLabel>
 #include <marble/MarbleControlBox.h>
+#include <GIcon.h>
 
 MapPage::MapPage()
   : LaunchpadPage()
@@ -33,6 +34,7 @@ MapPage::MapPage()
 void
 MapPage::init()
 {
+  setIcon(GIcon("marble"));
   map = new MarbleWidget;
   map->setMapThemeId("earth/openstreetmap/openstreetmap.dgml");
   map->setShowGps(true);

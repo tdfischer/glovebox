@@ -45,6 +45,7 @@ add_definitions(${QT_DEFINITIONS})
 add_subdirectory(BasicPlugins)
 
 add_executable(Launchpad ${Launchpad_SRCS})
-target_link_libraries(Launchpad ${QT_LIBRARIES} BasicPlugins)
+target_link_libraries(Launchpad ${QT_LIBRARIES} BasicPlugins gloveui)
 
 install(TARGETS Launchpad DESTINATION bin)
+install(FILES ${Launchpad_HEADERS} DESTINATION include/Launchpad)

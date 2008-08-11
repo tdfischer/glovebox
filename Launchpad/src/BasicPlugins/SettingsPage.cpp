@@ -26,18 +26,18 @@
 #include <QIcon>
 #include <QWidget>
 #include <QLabel>
+#include <GIcon.h>
 
 SettingsPage::SettingsPage()
   : LaunchpadPage()
 {
   setName("Settings");
-  //setIcon(QIcon("/opt/Glovebox/share/icons/configure.png"));
 }
 
 void
 SettingsPage::init()
 {
-  setIcon(QIcon("/opt/Glovebox/share/icons/configure.png"));
+  setIcon(GIcon("user-desktop"));
   m_page = new QWidget();
   QHBoxLayout* layout = new QHBoxLayout(m_page);
   m_page->setLayout(layout);
