@@ -56,6 +56,8 @@ PageListModel::data(const QModelIndex &index, int role) const
     return m_pages.at(index.row())->icon();
   else if (role == PageListModel::WidgetRole)
     return QVariant::fromValue(m_pages.at(index.row())->widget());
+  else if (role == Qt::SizeHintRole)
+    return QVariant(QSize(64,64));
   else
     return QVariant();
 }

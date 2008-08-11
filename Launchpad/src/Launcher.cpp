@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QDesktopWidget>
 #include <QHBoxLayout>
+#include <QSizePolicy>
 
 #include "LaunchpadApp.h"
 #include "PageListModel.h"
@@ -32,7 +33,13 @@ Launcher::Launcher(QWidget* parent)
   m_pageChooser->setMovement(QListView::Snap);
   m_pageChooser->setModel(m_pager->model());
   m_pageChooser->setItemDelegate(new PageListDelegate(this));
+  m_pageChooser->setIconSize(QSize(64, 64));
+  m_pageChooser->setViewMode(QListView::IconMode);
+  m_pageChooser->setFlow(QListView::TopToBottom);
+  m_pageChooser->setUniformItemSizes(true);
   m_pageChooser->setSpacing(5);
+  m_pageBar->resize(QSize(64,64));
+  m_pages->resize(qApp->desktop()->screenGeometry().size());
 
   connect(m_pageBar, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)), this, SLOT(updatePageBarDirection(Qt::DockWidgetArea)));
   connect(m_pageChooser, SIGNAL(clicked(const QModelIndex&)), this, SLOT(switchPage(const QModelIndex&)));

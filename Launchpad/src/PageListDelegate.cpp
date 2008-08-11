@@ -42,19 +42,26 @@ PageListDelegate::paint(QPainter* painter, const QStyleOptionViewItem &option, c
   title = fm.elidedText(title, Qt::ElideRight, option.rect.width());
 
   painter->save();
-
-  if (option.state == QStyle::State_Selected) {
-    painter->setBrush(option.palette.color(QPalette::Highlight));
-    painter->drawRect(option.rect);
-  }
-
+  
   QGradient backgroundGradient(QLinearGradient(0,0,0,1));
   backgroundGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
-  backgroundGradient.setColorAt(0, option.palette.color(QPalette::Midlight));
-  backgroundGradient.setColorAt(1, option.palette.color(QPalette::Dark));
   QGradient borderGradient(backgroundGradient);
-  borderGradient.setColorAt(0, option.palette.color(QPalette::Mid));
-  borderGradient.setColorAt(1, option.palette.color(QPalette::Button));
+
+  if (option.state & QStyle::State_Selected) {
+    backgroundGradient.setColorAt(0, option.palette.color(QPalette::Highlight));
+    backgroundGradient.setColorAt(1, option.palette.color(QPalette::Dark));
+    
+    borderGradient.setColorAt(0, option.palette.color(QPalette::Mid));
+    borderGradient.setColorAt(1, option.palette.color(QPalette::Highlight));
+  } else {
+    backgroundGradient.setColorAt(0, option.palette.color(QPalette::Midlight));
+    backgroundGradient.setColorAt(1, option.palette.color(QPalette::Dark));
+    
+    borderGradient.setColorAt(0, option.palette.color(QPalette::Mid));
+    borderGradient.setColorAt(1, option.palette.color(QPalette::Button));
+  }
+
+  
 
   QBrush backgroundBrush(backgroundGradient);
   QBrush borderBrush(borderGradient);
@@ -64,10 +71,17 @@ PageListDelegate::paint(QPainter* painter, const QStyleOptionViewItem &option, c
   painter->setPen(borderPen);
   painter->setBrush(backgroundBrush);
   painter->drawRoundedRect(option.rect, 5, 5);
+  
 
   painter->restore();
+  
+  QRect iconRect = option.rect;
+  iconRect.moveTop(iconRect.top()+10-fm.height()/2);
+  iconRect.moveLeft(iconRect.left()+10);
+  iconRect.setWidth(iconRect.width()-20);
+  iconRect.setHeight(iconRect.height()-20);
 
-  icon.paint(painter, option.rect, Qt::AlignCenter | Qt::AlignTop);
+  icon.paint(painter, iconRect, Qt::AlignCenter | Qt::AlignTop);
 
   painter->setPen(option.palette.color(QPalette::Light));
   QRect textArea(option.rect);
