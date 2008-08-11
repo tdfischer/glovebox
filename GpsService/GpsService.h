@@ -1,8 +1,6 @@
 #ifndef GPSSERVICE_H
 #define GPSSERVICE_H
 
-#include <LaunchpadService.h>
-
 #include <QMutex>
 
 #include <gps.h>
