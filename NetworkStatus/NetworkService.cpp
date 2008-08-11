@@ -2,7 +2,6 @@
 
 #include <NetworkManager/NetworkManager.h>
 
-//#include <QtCore/qglobal.h>
 #include <QHostAddress> //IP to String
 #include <QDBusConnection>
 #include <QDBusInterface>
@@ -60,7 +59,7 @@ void
 NetworkService::updateDevices() {
   QMap<QString, QVariant> deviceList;
   QDBusReply<QList<QDBusObjectPath> > reply = m_dbus->call("GetDevices");
-  foreach(QDBusObjectPath device, reply.value()) {
+  foreach(const QDBusObjectPath device, reply.value()) {
     //TODO: Wireless information
     QString path = device.path();
     QDBusInterface dev( NM_DBUS_SERVICE, path, NM_DBUS_INTERFACE_DEVICE, QDBusConnection::systemBus());
