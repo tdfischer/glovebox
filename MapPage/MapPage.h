@@ -1,5 +1,5 @@
-#ifndef GPSPAGE_H
-#define GPSPAGE_H
+#ifndef MAPPAGE_H
+#define MAPPAGE_H
 
 /**
  * Copyright (C) 2008 Trever Fischer <wm161@wm161.net>
