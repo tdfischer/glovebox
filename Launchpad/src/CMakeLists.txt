@@ -38,7 +38,7 @@ qt4_add_resources(Launchpad_SRCS splash.qrc)
 configure_file(config.h.cmake
 ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
-include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR} ${QT_INCLUDES})
+include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR} ${QT_INCLUDES} ${GLOVEUI_INCLUDES})
 
 add_definitions(${QT_DEFINITIONS})
 

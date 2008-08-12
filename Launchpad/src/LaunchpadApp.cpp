@@ -26,6 +26,10 @@
 #include "PageListDelegate.h"
 #include "Launcher.h"
 
+#include <GSoundLoader.h>
+#include <GIconLoader.h>
+#include <GNotify.h>
+
 #include <QTimer>
 #include <QMainWindow>
 #include <QLabel>
@@ -50,6 +54,16 @@ LaunchpadApp::LaunchpadApp(int argc, char** argv)
     m_splash = new Splash();
     m_splash->show();
     m_splash->showMessage("Starting up");
+    
+    //m_splash->showMessage("Loading configuration");
+    
+    m_splash->showMessage("Loading Sounds");
+    GSoundLoader::global();
+    
+    m_splash->showMessage("Loading Icons");
+    GIconLoader::global();
+    
+    m_splash->showMessage("Loading Themes");
 
     m_launcher = new Launcher();
 
@@ -62,6 +76,12 @@ LaunchpadApp::LaunchpadApp(int argc, char** argv)
     m_splash->showMessage("Loading plugins");
 
     PluginManager::instance()->loadPlugins();
+    
+    m_splash->showMessage("Welcome.");
+    
+    GNotify::global()->sound("desktop-login");
+    GNotify::global()->sound("desktop-logout");
+    //Phonon::MediaObject welcomeSound = new Phonon::MediaObject(GSoundLoader::global()->getSound("desktop-login"));
 
     m_launcher->show();
 }
