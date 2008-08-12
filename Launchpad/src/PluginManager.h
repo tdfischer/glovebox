@@ -56,7 +56,7 @@ class PluginManager : public QObject
     void loadPlugin(const QString &lib);
     void loadPlugins();
     QList<QObject*> loadedPlugins() const;
-    bool pluginsLoaded() const;
+    bool pluginsAreLoaded() const;
 
   signals:
     void pluginsLoaded();

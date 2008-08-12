@@ -49,7 +49,7 @@ PluginManager::loadPlugins()
   qDebug() << "Looking for plugins in" << PLUGIN_PATH;
   QDir pluginDir = QDir(PLUGIN_PATH);
 
-  foreach(QString file, pluginDir.entryList(QDir::Files))
+  foreach(const QString file, pluginDir.entryList(QDir::Files))
     loadPlugin(pluginDir.absoluteFilePath(file));
 
   m_pluginsLoaded = true;
@@ -72,7 +72,7 @@ PluginManager::loadPlugin(const QString &lib)
 }
 
 bool
-PluginManager::pluginsLoaded() const
+PluginManager::pluginsAreLoaded() const
 {
   return m_pluginsLoaded;
 }

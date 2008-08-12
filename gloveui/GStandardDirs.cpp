@@ -10,10 +10,12 @@
 static const char suffixes[] =
 "icons\0"
 "icons\0"
+"sounds\0"
+"sounds\0"
 "\0";
 
 static const int suffixes_indexes[] = {
-  0, 6, -1
+  0, 6, 12, 19, -1
 };
 
 GStandardDirs::GStandardDirs()
