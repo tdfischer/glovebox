@@ -34,11 +34,14 @@ from your source directory. If you are building for Qt/Embedded linux
 be sure that you set your PATH variable to the proper location.
 
 The GPS navigation uses Marble to draw the maps. If you are building against
-Qt/Embedded, you should check out the SVN: 
+Qt/Embedded, you should check out the latest SVN: 
 
 	svn co svn://websvn.kde.org/home/kde/trunk/KDE/kdeedu/marble
 
 Install it to the prefix you are installing Glovebox to.
+
+Sound output uses Qt's Phonon implementation, so you need to
+make sure your Qt has that compiled in.
 
 Bugs
 ----
