@@ -35,7 +35,7 @@ class GpsListener : public QThread
     void stop();
 
   signals:
-    void fixUpdated(const gps_fix_t fix);
+    void dataUpdate(const gps_data_t data);
     void socketClosed();
 
   private:

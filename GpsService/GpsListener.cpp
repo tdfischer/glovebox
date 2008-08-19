@@ -45,7 +45,7 @@ GpsListener::run()
     //qDebug() << "Poll'd.";
     //qDebug() << "Fix: " << QPointF(m_gpsd->fix.latitude,m_gpsd->fix.longitude);
     //m_lastFix = m_gpsd->fix;
-    emit fixUpdated(m_gpsd->fix);
+    emit dataUpdate(*m_gpsd);
     QApplication::processEvents();
   }
   gps_close(m_gpsd);

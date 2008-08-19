@@ -20,16 +20,17 @@
 #include "GpsService.h"
 
 #include <QPointF>
+#include <QString>
 
-Q_DECLARE_METATYPE(gps_fix_t);
+Q_DECLARE_METATYPE(gps_data_t);
 
 GpsService::GpsService()
   : LaunchpadService()
 {
   setName("gps");
-  qRegisterMetaType<gps_fix_t>();
+  qRegisterMetaType<gps_data_t>();
   m_listener = new GpsListener(this);
-  connect(m_listener, SIGNAL(fixUpdated(gps_fix_t)), this, SLOT(updatedFix(gps_fix_t)));
+  connect(m_listener, SIGNAL(dataUpdate(gps_data_t)), this, SLOT(parseData(gps_data_t)));
   connect(m_listener, SIGNAL(socketClosed()), this, SLOT(listenerStopped()));
 }
 
@@ -38,6 +39,11 @@ GpsService::start()
 {
   m_listener->start();
   setRunning(true);
+  setData("Position",QPointF());
+  setData("Altitude",0);
+  setData("Speed", 0);
+  setData("Fix", "None");
+  setData("Direction", 0);
 }
 
 void
@@ -48,11 +54,22 @@ GpsService::stop()
 }
 
 void
-GpsService::updatedFix(const gps_fix_t fix)
+GpsService::parseData(const gps_data_t data)
 {
+  gps_fix_t fix = data.fix;
   setData("Position",QPointF(fix.latitude,fix.longitude));
   setData("Altitude",fix.altitude);
   setData("Speed", fix.speed);
+  setData("Direction", fix.track);
+  setData("PositionError", fix.eph);
+  
+  /*int signal = 0;
+  for(int i=0;i<data.satellites;i++) {
+    signal+=data.ss[i];
+  }
+  signal /= data.satellites;
+  //setData("Signal", signal);*/
+  setData("Signal", data.satellites_used);
 
   QString fixType;
   switch(fix.mode) {
@@ -68,6 +85,8 @@ GpsService::updatedFix(const gps_fix_t fix)
       break;
   }
   setData("Fix", fixType);
+  
+  setData("Device", QString(data.gps_device));
 }
 
 void

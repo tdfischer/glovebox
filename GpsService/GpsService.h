@@ -39,7 +39,7 @@ class GpsService : public LaunchpadService
     void stop();
 
   private slots:
-    void updatedFix(const gps_fix_t fix);
+    void parseData(const gps_data_t data);
     void listenerStopped();
 
   private:
