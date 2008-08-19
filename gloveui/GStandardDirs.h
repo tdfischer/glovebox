@@ -4,6 +4,7 @@
 #include <QString>
 #include <QStringList>
 #include <QMap>
+#include <QCache>
 
 #include "Glovebox.h"
 
@@ -14,6 +15,7 @@ class GStandardDirs {
   public:
     GStandardDirs();
     ~GStandardDirs();
+    QStringList findFiles(const QString &type, const QString &file);
     QString findFile(const QString &type, const QString &file);
     static GStandardDirs* global() {
       static GStandardDirs* instance;
@@ -34,7 +36,8 @@ class GStandardDirs {
 
   private:
     QStringList prefixes;
-    QMap<QString, QString> types;
+    QHash<QString, QString> types;
+    QHash<QString, QStringList> cache;
 };
 
 }

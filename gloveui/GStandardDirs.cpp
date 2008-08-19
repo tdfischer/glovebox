@@ -5,6 +5,8 @@
 #include <QtCore/QFile>
 #include <QtCore/QDir>
 
+#include <stdlib.h>
+
 #include <QDebug>
 
 static const char suffixes[] =
@@ -27,15 +29,17 @@ GStandardDirs::GStandardDirs()
   }
   addPrefix(GLOVEBOX_DATA_DIR);
   
-  QByteArray xdg_paths = qgetenv("XDG_DATA_DIRS");
-  foreach(const QString xdgDir, QDir::fromNativeSeparators(QFile::decodeName(xdg_paths)).split(':'))
-    addPrefix(xdgDir);
+  QStringList xdg_paths = QString(QFile::decodeName(getenv("XDG_DATA_DIRS"))).split(':');
+  foreach(const QString xdgDir, xdg_paths)
+    addPrefix(QDir::fromNativeSeparators(xdgDir));
     
-  QByteArray glovebox_paths = qgetenv("GLOVEBOX_DIRS");
-  foreach(const QString gloveDir, QDir::fromNativeSeparators(QFile::decodeName(glovebox_paths)))
-    addPrefix(gloveDir);
+  QStringList glovebox_paths = QString(QFile::decodeName(getenv("GLOVEBOX_DIRS"))).split(':');
+  foreach(const QString gloveDir, glovebox_paths)
+    addPrefix(QDir::fromNativeSeparators(gloveDir));
   
   addPrefix(".");
+
+  addPrefix(QDir::homePath()+"/.glovebox/share");
 }
 
 void
@@ -55,14 +59,27 @@ GStandardDirs::addPrefix(const QString & prefix)
 QString
 GStandardDirs::findFile(const QString &type, const QString &file)
 {
+  QStringList files = findFiles(type,file);
+  if (files.empty())
+    return QString();
+  return findFiles(type, file).at(0);
+}
+
+QStringList
+GStandardDirs::findFiles(const QString &type, const QString &file)
+{
+  if (cache.contains(type+"/"+file))
+    return cache[type+"/"+file];
+  QStringList ret;
   if (types.contains(type)) {
     QString suffix = types[type];
-    foreach(QString prefix, prefixes) {
-      if (QFile::exists(prefix+"/"+suffix+"/"+file))
-        return QString(prefix+"/"+suffix+"/"+file);
+    foreach(const QString prefix, prefixes) {
+      QString path = prefix+"/"+suffix+"/"+file;
+      if (QFile::exists(path)) {
+        ret.append(path);
+      }
     }
-    return QString();
-  } else {
-    return QString();
+    cache.insert(type+"/"+file, ret);
   }
+  return ret;
 }
