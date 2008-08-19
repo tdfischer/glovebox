@@ -26,7 +26,7 @@ MediaService::call(const QString &method, const QList<QVariant> &args)
 void
 MediaService::start()
 {
-  playFile("/opt/kde4/share/sounds/pop.wav");
+  //playFile("/opt/kde4/share/sounds/pop.wav");
   setRunning(true);
 }
 
