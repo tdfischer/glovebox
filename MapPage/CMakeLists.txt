@@ -6,6 +6,8 @@ include(${QT_USE_FILE})
 
 set(MapPage_SRCS
   MapPage.cpp
+  CompassWidget.cpp
+  SignalWidget.cpp
 )
 
 qt4_automoc(${MapPage_SRCS})

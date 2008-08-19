@@ -22,6 +22,9 @@
 
 #include <LaunchpadPage.h>
 
+#include "CompassWidget.h"
+#include "SignalWidget.h"
+
 #include <marble/MarbleWidget.h>
 #include <marble/MarbleControlBox.h>
 #include <marble/MapThemeManager.h>
@@ -34,9 +37,14 @@ class MapPage : public LaunchpadPage {
   public:
     MapPage();
     void init();
+    
+  private slots:
+    void gpsUpdate(const QString &key, const QVariant &data);
 
   private:
     MarbleWidget* map;
+    CompassWidget* compass;
+    SignalWidget* bars;
 
 };
 

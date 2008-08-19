@@ -22,7 +22,12 @@
 #include <QWidget>
 #include <QSplitter>
 #include <QLabel>
+#include <QDockWidget>
+
+#include <ServiceManager.h>
+
 #include <marble/MarbleControlBox.h>
+
 #include <GIcon.h>
 
 MapPage::MapPage()
@@ -40,6 +45,29 @@ MapPage::init()
   map->setShowGps(true);
 
   setWidget(map);
+
+  QDockWidget* dock = new QDockWidget("Compass");
+  addDock(dock);
+
+  compass = new CompassWidget(dock);
+  dock->setWidget(compass);
+  
+  dock = new QDockWidget("Signal");
+  addDock(dock);
+  bars = new SignalWidget(dock);
+  dock->setWidget(bars);
+  bars->setMaxStrength(4);
+  
+  connect(ServiceManager::getService("gps"), SIGNAL(dataUpdated(const QString, const QVariant)), this, SLOT(gpsUpdate(const QString, const QVariant)));
+}
+
+void
+MapPage::gpsUpdate(const QString &key, const QVariant &data)
+{
+  if (key == "Direction")
+    compass->setDirection(data.toDouble());
+  if (key == "Signal")
+    bars->setStrength(data.toInt());
 }
 
 Q_EXPORT_PLUGIN2(gpspage, MapPage)
