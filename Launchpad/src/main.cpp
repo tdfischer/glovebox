@@ -21,9 +21,10 @@
 #include <QtPlugin>
 
 Q_IMPORT_PLUGIN(homepage)
-Q_IMPORT_PLUGIN(settingspage)
+//Q_IMPORT_PLUGIN(settingspage)
 Q_IMPORT_PLUGIN(timeservice)
 Q_IMPORT_PLUGIN(clockpage)
+//Q_IMPORT_PLUGIN(clockwidget)
 
 int main(int argc, char **argv)
 {

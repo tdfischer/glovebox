@@ -1,6 +1,6 @@
 set(BasicPlugins_SRCS
   HomePage.cpp
-  SettingsPage.cpp
+  #SettingsPage.cpp
   TimeService.cpp
   ClockPage.cpp
   #DashWidget.cpp

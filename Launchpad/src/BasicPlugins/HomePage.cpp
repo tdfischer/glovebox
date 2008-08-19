@@ -23,6 +23,8 @@
 #include <QGraphicsTextItem>
 #include <QMessageBox>
 #include <QGraphicsView>
+#include <PluginManager.h>
+#include <GIcon.h>
 
 HomePage::HomePage()
   : LaunchpadPage()
@@ -33,11 +35,38 @@ HomePage::HomePage()
 void
 HomePage::init()
 {
+  setIcon(GIcon("start-here"));
   m_scene = new QGraphicsScene();
-  m_scene->addText("Test");
   m_view = new QGraphicsView(m_scene);
   m_view->show();
+  connect(PluginManager::instance(), SIGNAL(pluginsLoaded()), this, SLOT(loadWidgets()));
+  connect(PluginManager::instance(), SIGNAL(pluginLoaded(QObject*)), this, SLOT(loadWidget(QObject*)));
   setWidget(m_view);
+}
+
+void
+HomePage::loadWidgets()
+{
+  foreach(QObject* plugin, PluginManager::instance()->loadedPlugins()) {
+    loadWidget(plugin);
+  }
+}
+
+void
+HomePage::loadWidget(QObject* plugin)
+{
+  if (PluginManager::instance()->pluginsAreLoaded()) {
+    DashWidget* iWidget = qobject_cast<DashWidget*>(plugin);
+    if (iWidget)
+      loadWidget(iWidget);
+  }
+}
+
+void
+HomePage::loadWidget(DashWidget* widget)
+{
+  widget->init();
+  m_scene->addItem(widget);
 }
 
 #include "HomePage.moc"

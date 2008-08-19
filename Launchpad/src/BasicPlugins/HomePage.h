@@ -21,6 +21,7 @@
 */
 
 #include <LaunchpadPage.h>
+#include "DashWidget.h"
 
 class QGraphicsView;
 class QGraphicsScene;
@@ -33,10 +34,15 @@ class HomePage : public LaunchpadPage
   public:
     HomePage();
     void init();
+    
+  private slots:
+    void loadWidgets();
+    void loadWidget(QObject* plugin);
 
   private:
     QGraphicsScene* m_scene;
     QGraphicsView* m_view;
+    void loadWidget(DashWidget* widget);
 };
 
 #endif

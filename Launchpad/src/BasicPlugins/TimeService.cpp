@@ -35,7 +35,7 @@ TimeService::TimeService()
 QStringList
 TimeService::sources() const
 {
-  return QStringList() << "Date";
+  return QStringList() << "Date" << "Time";
 }
 
 void
