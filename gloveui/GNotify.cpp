@@ -19,4 +19,10 @@ GNotify::sound(const QString &name)
   player->play();
 }
 
+void
+GNotify::speak(const QString &text)
+{
+  
+}
+
 #include "GNotify.moc"

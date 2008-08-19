@@ -17,8 +17,10 @@ class GNotify : public QObject {
         instance = new GNotify();
       return instance;
     }
-
+  
+  public slots:
     void sound(const QString &name);
+    void speak(const QString &text);
 
   private:
     GNotify();
