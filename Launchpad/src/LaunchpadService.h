@@ -50,18 +50,20 @@ class LaunchpadService : public QObject
 
     virtual void requestUpdate(const QString &key);
 
-    void connectData(const QString &key, QObject* endpoint);
-
     virtual QStringList methods() const;
     virtual QVariant call(const QString &method, const QList<QVariant> &arguments);
 
-    virtual void start();
-    virtual void stop();
     bool running();
 
     bool isValid();
+    
+  public slots:
+    virtual void start();
+    virtual void stop();
 
   signals:
+    void started();
+    void stopped();
     void dataUpdated(const QString &key, const QVariant &data);
 
   protected:

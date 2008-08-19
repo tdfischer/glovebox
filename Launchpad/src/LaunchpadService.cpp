@@ -105,13 +105,6 @@ LaunchpadService::query(const QString &key) const
   return data[key];
 }
 
-void
-LaunchpadService::connectData(const QString &key, QObject* endpoint)
-{
-  Q_UNUSED(key);
-  connect(this,SIGNAL(dataUpdated(const QString, const QVariant)),endpoint,SLOT(dataUpdated(const QString, const QVariant)));
-}
-
 QStringList
 LaunchpadService::sources() const
 {

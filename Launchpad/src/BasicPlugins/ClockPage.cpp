@@ -25,6 +25,8 @@
 #include <QLabel>
 #include <QVariant>
 
+#include <GIcon.h>
+
 ClockPage::ClockPage()
   : LaunchpadPage()
 {
@@ -34,6 +36,7 @@ ClockPage::ClockPage()
 void
 ClockPage::init()
 {
+  setIcon(GIcon("clock"));
   QFont font;
   font.setPointSize(72);
   QLabel* label = new QLabel();
@@ -41,7 +44,7 @@ ClockPage::init()
   label->setAlignment(Qt::AlignCenter);
   setWidget(label);
   LaunchpadService* time = ServiceManager::getService("time");
-  time->connectData("Time", this);
+  connect(time, SIGNAL(dataUpdated(const QString, const QVariant)), this, SLOT(dataUpdated(const QString, const QVariant)));
 }
 
 void
