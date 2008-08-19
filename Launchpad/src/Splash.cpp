@@ -27,10 +27,11 @@ Splash::Splash()
 {
   Q_INIT_RESOURCE(splash);
 
-  m_fader = new QTimeLine(1500, this);
+  /*m_fader = new QTimeLine(500, this);
   m_fader->setCurveShape(QTimeLine::EaseOutCurve);
   connect(m_fader, SIGNAL(valueChanged(qreal)), this, SLOT(updateMsgStyle()));
-  connect(m_fader, SIGNAL(finished()), this, SLOT(nextStage()));
+  connect(m_fader, SIGNAL(finished()), this, SLOT(nextStage()));*/
+  connect(this, SIGNAL(messageChanged(const QString)), this, SLOT(changeMsg(const QString)));
 
   setPixmap(QPixmap(":/images/splash.png"));
   m_font = QFont("Helvetica");
@@ -39,10 +40,12 @@ Splash::Splash()
 }
 
 void
-Splash::showMessage(const QString& str)
+Splash::changeMsg(const QString& str)
 {
-  m_msgList.append(str);
+  /*m_msgList.append(str);
   nextStage();
+  repaint();*/
+  m_msg = str;
   repaint();
 }
 
@@ -77,7 +80,7 @@ Splash::drawContents(QPainter* painter)
   painter->setPen(Qt::black);
   painter->setFont(m_font);
   painter->drawPixmap(rect(),m_background);
-  painter->setOpacity(m_fader->currentValue());
+  /*painter->setOpacity(m_fader->currentValue());
 
   qreal offset = rect().width();
   switch (m_fader->direction()) {
@@ -85,7 +88,7 @@ Splash::drawContents(QPainter* painter)
     case QTimeLine::Backward: offset -= (1/m_fader->currentValue())*rect().width();break;
   }
 
-  painter->translate(offset,0);
+  painter->translate(offset,0);*/
   painter->drawText(rect(), Qt::AlignCenter, m_msg);
 }
 

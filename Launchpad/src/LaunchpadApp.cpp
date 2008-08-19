@@ -55,33 +55,39 @@ LaunchpadApp::LaunchpadApp(int argc, char** argv)
     m_splash->show();
     m_splash->showMessage("Starting up");
     
+    processEvents();
+    
     //m_splash->showMessage("Loading configuration");
     
     m_splash->showMessage("Loading Sounds");
+    processEvents();
     GSoundLoader::global();
     
     m_splash->showMessage("Loading Icons");
+    processEvents();
     GIconLoader::global();
     
     m_splash->showMessage("Loading Themes");
+    processEvents();
 
     m_launcher = new Launcher();
 
-    m_splash->finish(m_launcher);
+    //m_splash->finish(m_launcher);
     
     m_splash->showMessage("Building plugin loaders");
+    processEvents();
     PluginManager::instance();
     ServiceManager::instance();
 
     m_splash->showMessage("Loading plugins");
+    processEvents();
 
     PluginManager::instance()->loadPlugins();
     
     m_splash->showMessage("Welcome.");
+    processEvents();
     
     GNotify::global()->sound("desktop-login");
-    GNotify::global()->sound("desktop-logout");
-    //Phonon::MediaObject welcomeSound = new Phonon::MediaObject(GSoundLoader::global()->getSound("desktop-login"));
 
     m_launcher->show();
 }

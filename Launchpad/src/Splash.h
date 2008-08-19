@@ -36,14 +36,14 @@ class Splash : public QSplashScreen
 
   public:
     Splash();
-    void showMessage(const QString&);
 
   protected slots:
     void updateMsgStyle();
     void nextStage();
+    void changeMsg(const QString&);
 
   protected:
-    virtual void drawContents(QPainter*);
+    void drawContents(QPainter*);
 
     QPixmap m_background;
     QStringList m_msgList;
