@@ -32,17 +32,21 @@ GSoundLoader::findSound(const QString &name, const QString &theme)
   QStringList extensions;
   extensions << "ogg" << "wav";
   bool found = false;
-  foreach(const QString soundDir, directories) {
-    qDebug() << "Looking in" << soundDir;
-    QString soundPath = themePath+"/"+soundDir;
-    foreach(const QString ext, extensions) {
-      if (!found && QFile::exists(soundPath + "/" + name + "." + ext)) {
-        qDebug() << "Found as" << ext;
-        return Phonon::MediaSource(soundPath + "/" + name + "." + ext);
+  QString subname = name;
+  do {
+    foreach(const QString soundDir, directories) {
+      qDebug() << "Looking in" << soundDir;
+      QString soundPath = themePath+"/"+soundDir;
+      foreach(const QString ext, extensions) {
+        if (!found && QFile::exists(soundPath + "/" + subname + "." + ext)) {
+          qDebug() << "Found as" << ext;
+          return Phonon::MediaSource(soundPath + "/" + subname + "." + ext);
+        }
       }
     }
-  }
-  //TODO: 'Generalizing' sound names as per the standard algorithm
+    subname = subname.section('-', 0, -2);
+    qDebug() << "Shortening to" << subname;
+  } while (subname.contains('-'));
   if (!found && theme != "freedesktop") {
     QStringList inherit = themeIndex.value("Sound Theme/Inherits", "freedesktop").toStringList();
     qDebug() << "Couldn't find in" << theme << "looking in" << inherit;
