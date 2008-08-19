@@ -42,7 +42,7 @@ Launcher::Launcher(QWidget* parent)
   m_pages->resize(qApp->desktop()->screenGeometry().size());
 
   connect(m_pageBar, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)), this, SLOT(updatePageBarDirection(Qt::DockWidgetArea)));
-  connect(m_pageChooser, SIGNAL(clicked(const QModelIndex&)), this, SLOT(switchPage(const QModelIndex&)));
+  connect(m_pageChooser->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(switchPage(const QModelIndex&, const QModelIndex&)));
 
   connect(m_pager->model(), SIGNAL(pageAdded(LaunchpadPage*)), this, SLOT(pageAdded(LaunchpadPage*)));
 }
@@ -66,7 +66,7 @@ void
 Launcher::pageAdded(LaunchpadPage* page)
 {
   m_pages->addWidget(page->widget());
-  connect(page, SIGNAL(dockAdded(QDockWidget* widget)),this, SLOT(addDock(QDockWidget* widget)));
+  connect(page, SIGNAL(dockAdded(QDockWidget*)),this, SLOT(addDock(QDockWidget*)));
   foreach(QDockWidget* dock, page->docks()) {
     addDock(dock);
   }
@@ -75,17 +75,22 @@ Launcher::pageAdded(LaunchpadPage* page)
 void
 Launcher::addDock(QDockWidget* widget)
 {
+  //TODO: Hide docks from pages that aren't the top page
   addDockWidget(Qt::RightDockWidgetArea, widget);
 }
 
 void
-Launcher::switchPage(const QModelIndex &index)
+Launcher::switchPage(const QModelIndex &index, const QModelIndex &prev)
 {
-  qDebug() << "Switching to page" << index.data();
+  qDebug() << "Switching from page" << prev.data() << "to page" << index.data();
+  foreach(QDockWidget* dock, prev.data(PageListModel::DockRole).value<QList<QDockWidget*> >()) {
+    dock->hide();
+  }
+  
   m_pages->setCurrentWidget(index.data(PageListModel::WidgetRole).value<QWidget*>());
-  /*foreach(QVariant dock, index.data(PageListModel::DockRole).toList()) {
-    qDebug() << dock;
-  }*/
+  foreach(QDockWidget* dock, index.data(PageListModel::DockRole).value<QList<QDockWidget*> >()) {
+    dock->show();
+  }
 }
 
 #include "Launcher.moc"

@@ -25,7 +25,7 @@ class Launcher : public QMainWindow
     void addPage(LaunchpadPage* page);
 
   private slots:
-    void switchPage(const QModelIndex &index);
+    void switchPage(const QModelIndex &index, const QModelIndex &prev);
     void updatePageBarDirection(Qt::DockWidgetArea area);
     void pageAdded(LaunchpadPage*);
     void addDock(QDockWidget*);

@@ -22,6 +22,12 @@
 
 #include <QAbstractListModel>
 #include <QIcon>
+#include <QList>
+
+class QDockWidget;
+
+Q_DECLARE_METATYPE(QList<QDockWidget*>)
+
 
 namespace Launchpad
 {
@@ -35,7 +41,7 @@ class PageListModel : public QAbstractListModel
 
 
   public:
-    enum UserRoles { WidgetRole = Qt::UserRole };
+    enum UserRoles { WidgetRole = Qt::UserRole, DockRole };
     PageListModel(QObject* parent = 0);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
