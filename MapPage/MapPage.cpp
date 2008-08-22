@@ -43,6 +43,7 @@ MapPage::init()
   map = new MarbleWidget;
   map->setMapThemeId("earth/openstreetmap/openstreetmap.dgml");
   map->setShowGps(true);
+  map->setDownloadUrl( "http://download.kde.org/apps/marble/" );
 
   setWidget(map);
 
