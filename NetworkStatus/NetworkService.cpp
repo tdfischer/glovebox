@@ -108,6 +108,28 @@ NetworkService::updateDevices() {
     }
     devInfo.insert("State", state);
     
+    QString type;
+    switch(dev.property("DeviceType").toInt()) {
+      case NM_DEVICE_TYPE_ETHERNET:
+        type = "Ethernet";
+        break;
+      case NM_DEVICE_TYPE_WIFI:
+        type = "Wireless";
+        QDBusInterface wdev( NM_DBUS_SERVICE, path, NM_DBUS_INTERFACE_DEVICE_WIRELESS, QDBusConnection::systemBus());
+        QList<QString> apList;
+        QDBusReply<QList<QDBusObjectPath> > busAPList = wdev.call("GetAccessPoints");
+        QDBusObjectPath busActiveAP = wdev.property("ActiveAccessPoint").value<QDBusObjectPath>();
+        QDBusInterface curAPObj(NM_DBUS_SERVICE, busActiveAP.path(), NM_DBUS_INTERFACE_ACCESS_POINT);
+        setData("AccessPoint", QVariant(curAPObj.property("Ssid").toString()));
+        foreach(const QDBusObjectPath ap, busAPList.value()) {
+          QDBusInterface apObj(NM_DBUS_SERVICE, ap.path(), NM_DBUS_INTERFACE_ACCESS_POINT, QDBusConnection::systemBus());
+          apList.append(apObj.property("Ssid").toString());
+        }
+        setData("AccessPoints", QVariant(apList));
+        break;
+    }
+    devInfo.insert("Type", QVariant(type));
+    
     deviceList.insert(dev.property("Interface").toString(), QVariant(devInfo));
   }
   
