@@ -26,6 +26,8 @@
 #include <QHBoxLayout>
 #include <QIcon>
 
+#include <GIcon.h>
+
 LaunchpadPage::LaunchpadPage()
   : QObject()
 {
@@ -48,8 +50,8 @@ LaunchpadPage::init()
 
 
   QLabel* iconView = new QLabel(panel);
-  QPixmap icon("/opt/Glovebox/share/icons/help-hint.png"); //TODO: Icon manager
-  iconView->setPixmap(icon);
+  GIcon icon("help-hint");
+  iconView->setPixmap(icon.pixmap(iconView->size()));
 
   iconLayout->addWidget(iconView);
   iconLayout->addWidget(text);
