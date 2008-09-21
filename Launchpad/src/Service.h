@@ -32,7 +32,7 @@ class QStringList;
 namespace Launchpad
 {
 
-class LaunchpadService : public QObject
+class Service : public QObject
 {
 
   Q_OBJECT
@@ -41,7 +41,7 @@ class LaunchpadService : public QObject
   Q_PROPERTY(bool running READ running WRITE setRunning);
 
   public:
-    LaunchpadService();
+    Service();
 
     QString name() const;
 
@@ -79,6 +79,6 @@ class LaunchpadService : public QObject
 
 }
 
-Q_DECLARE_INTERFACE(Launchpad::LaunchpadService, "net.wm161.Glovebox.LaunchpadService/1.0")
+Q_DECLARE_INTERFACE(Launchpad::Service, "net.wm161.Glovebox.Service/1.0")
 
 #endif

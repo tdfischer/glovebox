@@ -25,13 +25,13 @@
 */
 
 #include "GpsListener.h"
-#include <LaunchpadService.h>
+#include <Service.h>
 
-class GpsService : public LaunchpadService
+class GpsService : public Service
 {
 
   Q_OBJECT
-  Q_INTERFACES(Launchpad::LaunchpadService)
+  Q_INTERFACES(Launchpad::Service)
 
   public:
     GpsService();

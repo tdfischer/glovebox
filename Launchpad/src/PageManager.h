@@ -9,7 +9,7 @@
 namespace Launchpad
 {
 
-class LaunchpadPage;
+class Page;
 class Launcher;
 class PageListModel;
 
@@ -26,8 +26,8 @@ class PageManager : public QObject {
 
   public:
     PageManager(QObject* parent = 0);
-    void addPage(LaunchpadPage* page);
-    void removePage(LaunchpadPage* page);
+    void addPage(Page* page);
+    void removePage(Page* page);
     PageListModel* model() const;
 
   private slots:

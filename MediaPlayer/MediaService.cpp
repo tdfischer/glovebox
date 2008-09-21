@@ -4,7 +4,7 @@
 #include <QDebug>
 
 MediaService::MediaService(QObject* parent)
-  : LaunchpadService()
+  : Service()
 {
   setName("media");
 }

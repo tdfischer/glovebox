@@ -12,7 +12,7 @@
 #include "PageListModel.h"
 #include "PluginManager.h"
 #include "PageListDelegate.h"
-#include "LaunchpadPage.h"
+#include "Page.h"
 #include "PageManager.h"
 
 Launcher::Launcher(QWidget* parent)
@@ -54,7 +54,7 @@ Launcher::Launcher(QWidget* parent)
   //connect(m_pageBar, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)), this, SLOT(updatePageBarDirection(Qt::DockWidgetArea)));
   connect(m_pageChooser->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(switchPage(const QModelIndex&, const QModelIndex&)));
 
-  connect(m_pager->model(), SIGNAL(pageAdded(LaunchpadPage*)), this, SLOT(pageAdded(LaunchpadPage*)));
+  connect(m_pager->model(), SIGNAL(pageAdded(Page*)), this, SLOT(pageAdded(Page*)));
 }
 
 void
@@ -67,13 +67,13 @@ Launcher::updatePageBarDirection(Qt::DockWidgetArea area)
 }
 
 void
-Launcher::addPage(LaunchpadPage* page)
+Launcher::addPage(Page* page)
 {
   m_pages->addWidget(page->widget());
 }
 
 void
-Launcher::pageAdded(LaunchpadPage* page)
+Launcher::pageAdded(Page* page)
 {
   m_pages->addWidget(page->widget());
   connect(page, SIGNAL(dockAdded(QDockWidget*)),this, SLOT(addDock(QDockWidget*)));

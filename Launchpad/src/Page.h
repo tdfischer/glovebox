@@ -36,18 +36,18 @@ namespace Launchpad
 /**
  * A page for use in the Launchpad interface
  *
- * LaunchpadPagess are one of the key components to Launchpad.
+ * Pagess are one of the key components to Launchpad.
  */
 
-class LaunchpadPage : public QObject
+class Page : public QObject
 {
   Q_OBJECT
   Q_PROPERTY( QString name READ name WRITE setName );
   Q_PROPERTY( QIcon icon READ icon WRITE setIcon );
 
   public:
-    LaunchpadPage();
-    virtual ~LaunchpadPage();
+    Page();
+    virtual ~Page();
     QString name() const;
     void setName(const QString &name);
     void setIcon(const QIcon &icon);
@@ -77,17 +77,17 @@ class LaunchpadPage : public QObject
     /**
      * Used by Launchpad to know when to update the page's title.
      */
-    void nameChanged(LaunchpadPage* page, const QString &newName);
+    void nameChanged(Page* page, const QString &newName);
 
     /**
      * Used by Launchpad to know when to update the page's icon.
      */
-    void iconChanged(LaunchpadPage* page, const QIcon &icon);
+    void iconChanged(Page* page, const QIcon &icon);
 
     /**
      * Emitted when the page's widget is changed
      */
-    void widgetChanged(LaunchpadPage* page, QWidget* widget);
+    void widgetChanged(Page* page, QWidget* widget);
     
     /**
      * Emitted when the page adds a dock
@@ -107,6 +107,6 @@ class LaunchpadPage : public QObject
 
 }
 
-Q_DECLARE_INTERFACE(Launchpad::LaunchpadPage, "net.wm161.Glovebox.LaunchpadPage/1.0")
+Q_DECLARE_INTERFACE(Launchpad::Page, "net.wm161.Glovebox.Page/1.0")
 
 #endif

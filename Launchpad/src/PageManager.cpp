@@ -1,7 +1,7 @@
 #include "PageManager.h"
 #include "Launcher.h"
 #include "PluginManager.h"
-#include "LaunchpadPage.h"
+#include "Page.h"
 #include "PageListModel.h"
 #include <QDebug>
 
@@ -15,7 +15,7 @@ PageManager::PageManager(QObject* parent)
 void
 PageManager::loadPlugin(QObject* plugin)
 {
-  LaunchpadPage* iPage = qobject_cast<LaunchpadPage*>(plugin);
+  Page* iPage = qobject_cast<Page*>(plugin);
   if (iPage) {
     qDebug() << "Found launchpad page plugin" << iPage->name();
     addPage(iPage);
@@ -23,13 +23,13 @@ PageManager::loadPlugin(QObject* plugin)
 }
 
 void
-PageManager::addPage(LaunchpadPage* page)
+PageManager::addPage(Page* page)
 {
   m_pageModel->addPage(page);
 }
 
 void
-PageManager::removePage(LaunchpadPage* page)
+PageManager::removePage(Page* page)
 {
   //TODO
 }

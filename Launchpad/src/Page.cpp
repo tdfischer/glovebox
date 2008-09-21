@@ -17,7 +17,7 @@
  *  along with Glovebox.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "LaunchpadPage.h"
+#include "Page.h"
 
 #include <QLabel>
 #include <QWidget>
@@ -28,17 +28,17 @@
 
 #include <GIcon.h>
 
-LaunchpadPage::LaunchpadPage()
+Page::Page()
   : QObject()
 {
 }
 
-LaunchpadPage::~LaunchpadPage()
+Page::~Page()
 {
 }
 
 void
-LaunchpadPage::init()
+Page::init()
 {
   QWidget* panel = new QWidget();
   QWidget* text = new QWidget();
@@ -79,27 +79,27 @@ LaunchpadPage::init()
 }
 
 void
-LaunchpadPage::addDock(QDockWidget* dock)
+Page::addDock(QDockWidget* dock)
 {
   m_dockWidgets.append(dock);
   emit dockAdded(dock);
 }
 
 void
-LaunchpadPage::removeDock(QDockWidget* dock)
+Page::removeDock(QDockWidget* dock)
 {
   m_dockWidgets.removeOne(dock);
 }
 
 QList<QDockWidget*>
-LaunchpadPage::docks() const
+Page::docks() const
 {
   return m_dockWidgets;
 }
 
 //TODO: Save visibility states
 void
-LaunchpadPage::hideDocks()
+Page::hideDocks()
 {
   foreach(QDockWidget* dock, m_dockWidgets) {
     dock->hide();
@@ -107,7 +107,7 @@ LaunchpadPage::hideDocks()
 }
 
 void
-LaunchpadPage::showDocks()
+Page::showDocks()
 {
   foreach(QDockWidget* dock, m_dockWidgets) {
     dock->show();
@@ -115,53 +115,53 @@ LaunchpadPage::showDocks()
 }
 
 void
-LaunchpadPage::hideEvent(QHideEvent* event)
+Page::hideEvent(QHideEvent* event)
 {
   hideDocks();
 }
 
 void
-LaunchpadPage::showEvent(QShowEvent* event)
+Page::showEvent(QShowEvent* event)
 {
   showDocks();
 }
 
 void
-LaunchpadPage::setWidget(QWidget* widget)
+Page::setWidget(QWidget* widget)
 {
   m_widget = widget;
 }
 
 QWidget*
-LaunchpadPage::widget() const
+Page::widget() const
 {
   return m_widget;
 }
 
 void
-LaunchpadPage::setName(const QString &name)
+Page::setName(const QString &name)
 {
   m_name = QString(name);
   emit nameChanged(this, name);
 }
 
 QString
-LaunchpadPage::name() const
+Page::name() const
 {
   return m_name;
 }
 
 void
-LaunchpadPage::setIcon(const QIcon &icon)
+Page::setIcon(const QIcon &icon)
 {
   m_icon = QIcon(icon);
   emit iconChanged(this, icon);
 }
 
 QIcon
-LaunchpadPage::icon() const
+Page::icon() const
 {
   return m_icon;
 }
 
-#include "LaunchpadPage.moc"
+#include "Page.moc"

@@ -1,15 +1,15 @@
 #ifndef NETWORKSERVICE_H
 #define NETWORKSERVICE_H
 
-#include <LaunchpadService.h>
+#include <Service.h>
 #include <QStringList>
 
 class QDBusInterface;
 
-class NetworkService : public LaunchpadService {
+class NetworkService : public Service {
 
   Q_OBJECT
-  Q_INTERFACES(Launchpad::LaunchpadService)
+  Q_INTERFACES(Launchpad::Service)
 
   public:
     NetworkService(QObject* parent = 0);

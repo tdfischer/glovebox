@@ -22,7 +22,7 @@
 
 #include <QMap>
 #include <QString>
-#include "LaunchpadService.h"
+#include "Service.h"
 
 namespace Launchpad
 {
@@ -49,11 +49,11 @@ class ServiceManager : public QObject
     void startService(const QString &name);
     void stopService(const QString &name);
 
-    static LaunchpadService* getService(const QString &name);
+    static Service* getService(const QString &name);
 
   protected:
-    LaunchpadService* findService(const QString &name) const;
-    void add(LaunchpadService* service);
+    Service* findService(const QString &name) const;
+    void add(Service* service);
 
   private slots:
     void loadPlugin(QObject*);
@@ -61,7 +61,7 @@ class ServiceManager : public QObject
   private:
     ServiceManager();
     static ServiceManager *m_instance;
-    QMap<QString, LaunchpadService*> serviceList;
+    QMap<QString, Service*> serviceList;
 };
 
 }

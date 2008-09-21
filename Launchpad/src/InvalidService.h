@@ -20,12 +20,12 @@
  *  along with Glovebox.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "LaunchpadService.h"
+#include "Service.h"
 
 namespace Launchpad
 {
 
-class InvalidService : public LaunchpadService
+class InvalidService : public Service
 {
   bool isValid() {return false;}
   void requestUpdate(const QString &key) {}

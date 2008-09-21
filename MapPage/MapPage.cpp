@@ -31,7 +31,7 @@
 #include <GIcon.h>
 
 MapPage::MapPage()
-  : LaunchpadPage()
+  : Page()
 {
   setName("Map");
 }

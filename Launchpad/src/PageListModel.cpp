@@ -19,7 +19,7 @@
 
 #include "PageListModel.h"
 
-#include "LaunchpadPage.h"
+#include "Page.h"
 
 PageListModel::PageListModel(QObject* parent)
   : QAbstractListModel(parent),
@@ -28,7 +28,7 @@ PageListModel::PageListModel(QObject* parent)
 }
 
 void
-PageListModel::addPage(LaunchpadPage* page)
+PageListModel::addPage(Page* page)
 {
   page->init();
   m_pages.append(page);
@@ -64,7 +64,7 @@ PageListModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-LaunchpadPage*
+Page*
 PageListModel::page(const QModelIndex &index) const
 {
   return m_pages.at(index.row());

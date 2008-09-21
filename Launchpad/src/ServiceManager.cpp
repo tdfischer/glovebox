@@ -31,7 +31,7 @@ ServiceManager::ServiceManager()
 }
 
 void
-ServiceManager::add(LaunchpadService* service)
+ServiceManager::add(Service* service)
 {
   serviceList.insert(service->name(),service);
   service->start();
@@ -40,21 +40,21 @@ ServiceManager::add(LaunchpadService* service)
 void
 ServiceManager::loadPlugin(QObject* plugin)
 {
-  LaunchpadService* iService = qobject_cast<LaunchpadService*>(plugin);
+  Service* iService = qobject_cast<Service*>(plugin);
   if (iService) {
     qDebug() << "Found service plugin" << iService->name();
     add(iService);
   }
 }
 
-LaunchpadService*
+Service*
 ServiceManager::getService(const QString& name)
 {
   ServiceManager* sm = ServiceManager::instance();
   return sm->findService(name);
 }
 
-LaunchpadService*
+Service*
 ServiceManager::findService(const QString& name) const
 {
   if (serviceList[name]==0)

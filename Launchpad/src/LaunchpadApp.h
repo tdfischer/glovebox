@@ -36,7 +36,7 @@ namespace Launchpad
 {
 
 class Splash;
-class LaunchpadPage;
+class Page;
 class ServiceManager;
 class PageListModel;
 class PluginManager;

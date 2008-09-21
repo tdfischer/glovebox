@@ -9,7 +9,7 @@
 #include <QtCore/qendian.h> //Endian conversion
 
 NetworkService::NetworkService(QObject* parent)
-  : LaunchpadService()
+  : Service()
 {
   setName("net");
 }

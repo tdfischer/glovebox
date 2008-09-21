@@ -6,7 +6,7 @@
 #include <QLabel>
 
 MediaPage::MediaPage()
-  : LaunchpadPage()
+  : Page()
 {
   setName("Media");
   setIcon(GIcon("applications-multimedia"));

@@ -20,16 +20,16 @@
  *  along with Glovebox.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <LaunchpadPage.h>
+#include <Page.h>
 #include <QObject>
 
 class QStackedWidget;
 class QListWidget;
 
-class SettingsPage : public LaunchpadPage
+class SettingsPage : public Page
 {
   Q_OBJECT
-  Q_INTERFACES(Launchpad::LaunchpadPage);
+  Q_INTERFACES(Launchpad::Page);
 
   public:
     SettingsPage();

@@ -25,7 +25,7 @@
 Q_DECLARE_METATYPE(gps_data_t);
 
 GpsService::GpsService()
-  : LaunchpadService()
+  : Service()
 {
   setName("gps");
   qRegisterMetaType<gps_data_t>();

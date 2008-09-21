@@ -18,8 +18,8 @@
 */
 
 #include "PluginManager.h"
-#include "LaunchpadService.h"
-#include "LaunchpadPage.h"
+#include "Service.h"
+#include "Page.h"
 #include "PageListModel.h"
 
 #include <config.h>

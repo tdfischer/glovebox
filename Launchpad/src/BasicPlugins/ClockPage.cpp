@@ -20,7 +20,7 @@
 #include "ClockPage.h"
 
 #include <ServiceManager.h>
-#include <LaunchpadService.h>
+#include <Service.h>
 
 #include <QLabel>
 #include <QVariant>
@@ -28,7 +28,7 @@
 #include <GIcon.h>
 
 ClockPage::ClockPage()
-  : LaunchpadPage()
+  : Page()
 {
   setName("Clock");
 }
@@ -43,7 +43,7 @@ ClockPage::init()
   label->setFont(font);
   label->setAlignment(Qt::AlignCenter);
   setWidget(label);
-  LaunchpadService* time = ServiceManager::getService("time");
+  Service* time = ServiceManager::getService("time");
   connect(time, SIGNAL(dataUpdated(const QString, const QVariant)), this, SLOT(dataUpdated(const QString, const QVariant)));
 }
 

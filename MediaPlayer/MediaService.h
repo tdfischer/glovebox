@@ -1,14 +1,14 @@
 #ifndef MEDIASERVICE_H
 #define MEDIASERVICE_H
 
-#include <LaunchpadService.h>
+#include <Service.h>
 #include <QtPlugin>
 #include <QStringList>
 
-class MediaService : public LaunchpadService {
+class MediaService : public Service {
 
   Q_OBJECT
-  Q_INTERFACES(Launchpad::LaunchpadService)
+  Q_INTERFACES(Launchpad::Service)
 
   public:
     MediaService(QObject* parent = 0);

@@ -20,12 +20,12 @@
  *  along with Glovebox.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <LaunchpadPage.h>
+#include <Page.h>
 
-class ClockPage : public LaunchpadPage
+class ClockPage : public Page
 {
   Q_OBJECT
-  Q_INTERFACES(Launchpad::LaunchpadPage);
+  Q_INTERFACES(Launchpad::Page);
 
   public:
     ClockPage();

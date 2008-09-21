@@ -32,7 +32,7 @@ Q_DECLARE_METATYPE(QList<QDockWidget*>)
 namespace Launchpad
 {
 
-class LaunchpadPage;
+class Page;
 
 class PageListModel : public QAbstractListModel
 {
@@ -46,15 +46,15 @@ class PageListModel : public QAbstractListModel
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;
-    LaunchpadPage* page(const QModelIndex &index) const;
+    Page* page(const QModelIndex &index) const;
 
-    void addPage(LaunchpadPage* page);
+    void addPage(Page* page);
 
   signals:
-    void pageAdded(LaunchpadPage* page);
+    void pageAdded(Page* page);
 
   private:
-    QList<LaunchpadPage*> m_pages;
+    QList<Page*> m_pages;
 };
 
 }

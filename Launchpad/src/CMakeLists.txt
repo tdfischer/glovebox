@@ -5,10 +5,10 @@ include(${QT_USE_FILE})
 
 set(Launchpad_SRCS
   LaunchpadApp.cpp
-  LaunchpadService.cpp
   main.cpp
   Launcher.cpp
-  LaunchpadPage.cpp
+  Page.cpp
+  Service.cpp
   PluginManager.cpp
   ServiceManager.cpp
   Splash.cpp
@@ -23,8 +23,8 @@ set(Launchpad_HEADERS
   ServiceManager.h
   Launcher.h
   Splash.h
-  LaunchpadService.h
-  LaunchpadPage.h
+  Service.h
+  Page.h
   PageListModel.h
   PageListDelegate.h
   InvalidService.h

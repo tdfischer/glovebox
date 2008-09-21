@@ -17,7 +17,7 @@
  *  along with Glovebox.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "LaunchpadService.h"
+#include "Service.h"
 
 #include <QList>
 #include <QVariant>
@@ -26,7 +26,7 @@
 
 #include <QDebug>
 
-LaunchpadService::LaunchpadService()
+Service::Service()
   : QObject(),
     data(),
     m_running(false)
@@ -34,48 +34,48 @@ LaunchpadService::LaunchpadService()
 }
 
 bool
-LaunchpadService::isValid()
+Service::isValid()
 {
   return true;
 }
 
 void
-LaunchpadService::setName(const QString &name)
+Service::setName(const QString &name)
 {
   m_name = name;
 }
 
 void
-LaunchpadService::requestUpdate(const QString &key)
+Service::requestUpdate(const QString &key)
 {
 }
 
 QString
-LaunchpadService::name() const
+Service::name() const
 {
   return m_name;
 }
 
 void
-LaunchpadService::start()
+Service::start()
 {
   setRunning(true);
 }
 
 void
-LaunchpadService::stop()
+Service::stop()
 {
   setRunning(false);
 }
 
 bool
-LaunchpadService::running()
+Service::running()
 {
   return m_running;
 }
 
 void
-LaunchpadService::setRunning(const bool setRun)
+Service::setRunning(const bool setRun)
 {
   m_running = setRun;
   qDebug() << name() << "running state:" << running();
@@ -86,13 +86,13 @@ LaunchpadService::setRunning(const bool setRun)
 }
 
 QVariant
-LaunchpadService::call(const QString &method, const QList<QVariant> &arguments)
+Service::call(const QString &method, const QList<QVariant> &arguments)
 {
   return QVariant();
 }
 
 void
-LaunchpadService::setData(const QString &key, const QVariant &newData)
+Service::setData(const QString &key, const QVariant &newData)
 {
   qDebug() << name() << "changed" << key << "to" << newData;
   data[key] = QVariant(newData);
@@ -100,21 +100,21 @@ LaunchpadService::setData(const QString &key, const QVariant &newData)
 }
 
 QVariant
-LaunchpadService::query(const QString &key) const
+Service::query(const QString &key) const
 {
   return data[key];
 }
 
 QStringList
-LaunchpadService::sources() const
+Service::sources() const
 {
   return data.keys();
 }
 
 QStringList
-LaunchpadService::methods() const
+Service::methods() const
 {
   return QStringList();
 }
 
-#include "LaunchpadService.moc"
+#include "Service.moc"

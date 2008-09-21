@@ -1,11 +1,11 @@
 #ifndef MEDIAPAGE_H
 #define MEDIAPAGE_H
 
-#include <LaunchpadPage.h>
+#include <Page.h>
 
-class MediaPage : public LaunchpadPage {
+class MediaPage : public Page {
   Q_OBJECT
-  Q_INTERFACES(Launchpad::LaunchpadPage)
+  Q_INTERFACES(Launchpad::Page)
   
   public:
     MediaPage();

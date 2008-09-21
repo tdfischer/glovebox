@@ -29,7 +29,7 @@
 #include <GIcon.h>
 
 SettingsPage::SettingsPage()
-  : LaunchpadPage()
+  : Page()
 {
   setName("Settings");
 }

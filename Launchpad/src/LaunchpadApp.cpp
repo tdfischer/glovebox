@@ -19,7 +19,7 @@
 
 #include "LaunchpadApp.h"
 
-#include "LaunchpadPage.h"
+#include "Page.h"
 #include "PluginManager.h"
 #include "Splash.h"
 #include "PageListModel.h"

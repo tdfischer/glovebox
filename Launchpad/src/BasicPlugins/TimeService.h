@@ -20,7 +20,7 @@
  *  along with Glovebox.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <LaunchpadService.h>
+#include <Service.h>
 
 #include <QObject>
 #include <QtPlugin>
@@ -28,10 +28,10 @@
 class QStringList;
 class QTimer;
 
-class TimeService : public LaunchpadService
+class TimeService : public Service
 {
   Q_OBJECT
-  Q_INTERFACES(Launchpad::LaunchpadService)
+  Q_INTERFACES(Launchpad::Service)
 
   public:
     TimeService();

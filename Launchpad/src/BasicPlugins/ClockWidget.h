@@ -3,7 +3,7 @@
 
 #include "DashWidget.h"
 #include <QGraphicsTextItem>
-#include <LaunchpadService.h>
+#include <Service.h>
 #include <ServiceManager.h>
 
 class ClockWidget : public DashWidget {
@@ -20,7 +20,7 @@ class ClockWidget : public DashWidget {
     void dataUpdated(const QString &key, const QVariant &data);
     
   private:
-    LaunchpadService* timeService;
+    Service* timeService;
     QGraphicsTextItem* m_label;
 };
 

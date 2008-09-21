@@ -27,7 +27,7 @@
 #include <GIcon.h>
 
 HomePage::HomePage()
-  : LaunchpadPage()
+  : Page()
 {
   setName("Dashboard");
 }

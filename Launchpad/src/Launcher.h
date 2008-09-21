@@ -13,7 +13,7 @@ namespace Launchpad
 {
 
 class PageListModel;
-class LaunchpadPage;
+class Page;
 class PageManager;
 
 class Launcher : public QMainWindow
@@ -22,12 +22,12 @@ class Launcher : public QMainWindow
 
   public:
     Launcher(QWidget* parent = 0);
-    void addPage(LaunchpadPage* page);
+    void addPage(Page* page);
 
   private slots:
     void switchPage(const QModelIndex &index, const QModelIndex &prev);
     void updatePageBarDirection(Qt::DockWidgetArea area);
-    void pageAdded(LaunchpadPage*);
+    void pageAdded(Page*);
     void addDock(QDockWidget*);
 
   private:

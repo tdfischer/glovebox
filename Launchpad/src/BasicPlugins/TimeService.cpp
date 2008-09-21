@@ -25,7 +25,7 @@
 #include <QVariant>
 
 TimeService::TimeService()
-  : LaunchpadService()
+  : Service()
 {
   setName("time");
   m_timer = new QTimer(this);

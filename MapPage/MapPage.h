@@ -20,7 +20,7 @@
  *  along with Glovebox.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <LaunchpadPage.h>
+#include <Page.h>
 
 #include "CompassWidget.h"
 #include "SignalWidget.h"
@@ -29,10 +29,10 @@
 #include <marble/MarbleControlBox.h>
 #include <marble/MapThemeManager.h>
 
-class MapPage : public LaunchpadPage {
+class MapPage : public Page {
 
   Q_OBJECT
-  Q_INTERFACES(Launchpad::LaunchpadPage)
+  Q_INTERFACES(Launchpad::Page)
 
   public:
     MapPage();
