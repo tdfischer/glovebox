@@ -3,8 +3,9 @@ set(BasicPlugins_SRCS
   #SettingsPage.cpp
   TimeService.cpp
   ClockPage.cpp
-  #DashWidget.cpp
-  #ClockWidget.cpp
+  DashWidget.cpp
+  ClockWidget.cpp
+  DateWidget.cpp
 )
 
 qt4_automoc(${BasicPlugins_SRCS})
