@@ -23,6 +23,8 @@
 #include <QGraphicsTextItem>
 #include <QMessageBox>
 #include <QGraphicsView>
+#include <QGraphicsGridLayout>
+#include <QPainter>
 #include <PluginManager.h>
 #include <GIcon.h>
 
@@ -41,6 +43,10 @@ HomePage::init()
   m_view->show();
   connect(PluginManager::instance(), SIGNAL(pluginsLoaded()), this, SLOT(loadWidgets()));
   connect(PluginManager::instance(), SIGNAL(pluginLoaded(QObject*)), this, SLOT(loadWidget(QObject*)));
+  m_layout = new QGraphicsGridLayout();
+  m_container = new QGraphicsWidget();
+  m_scene->addItem(m_container);
+  m_view->setRenderHint( QPainter::Antialiasing );
   setWidget(m_view);
 }
 
@@ -67,6 +73,8 @@ HomePage::loadWidget(DashWidget* widget)
 {
   widget->init();
   m_scene->addItem(widget);
+  widget->setParentItem(m_container);
+  m_layout->activate();
 }
 
 #include "HomePage.moc"

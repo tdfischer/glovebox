@@ -25,6 +25,8 @@
 
 class QGraphicsView;
 class QGraphicsScene;
+class QGraphicsWidget;
+class QGraphicsGridLayout;
 
 class HomePage : public Page
 {
@@ -42,6 +44,8 @@ class HomePage : public Page
   private:
     QGraphicsScene* m_scene;
     QGraphicsView* m_view;
+    QGraphicsGridLayout* m_layout;
+    QGraphicsWidget* m_container;
     void loadWidget(DashWidget* widget);
 };
 
