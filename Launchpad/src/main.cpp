@@ -24,7 +24,8 @@ Q_IMPORT_PLUGIN(homepage)
 //Q_IMPORT_PLUGIN(settingspage)
 Q_IMPORT_PLUGIN(timeservice)
 Q_IMPORT_PLUGIN(clockpage)
-//Q_IMPORT_PLUGIN(clockwidget)
+Q_IMPORT_PLUGIN(clockwidget)
+//Q_IMPORT_PLUGIN(datewidget)
 
 int main(int argc, char **argv)
 {
