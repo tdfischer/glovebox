@@ -56,6 +56,7 @@ void
 TimeService::timeUpdate()
 {
   setData("Time", QVariant(QTime::currentTime()));
+  setData("Date", QVariant(QDate::currentDate()));
 }
 
 void
