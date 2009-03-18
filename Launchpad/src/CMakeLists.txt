@@ -41,14 +41,14 @@ qt4_add_resources(Launchpad_SRCS splash.qrc)
 configure_file(config.h.cmake
 ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
-include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR} ${QT_INCLUDES} ${GLOVEUI_INCLUDES})
+include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR} ${KDE4_INCLUDES} ${QT_INCLUDES} ${GLOVEUI_INCLUDES})
 
 add_definitions(${QT_DEFINITIONS})
 
 add_subdirectory(BasicPlugins)
 
 add_executable(Launchpad ${Launchpad_SRCS})
-target_link_libraries(Launchpad ${QT_LIBRARIES} BasicPlugins gloveui)
+target_link_libraries(Launchpad ${QT_LIBRARIES} ${KDE4_KDEUI_LIBS} BasicPlugins gloveui)
 
 install(TARGETS Launchpad DESTINATION bin)
 install(FILES ${Launchpad_HEADERS} DESTINATION include/Launchpad)

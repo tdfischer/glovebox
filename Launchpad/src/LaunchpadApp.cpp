@@ -46,8 +46,8 @@
 
 #include <QDebug>
 
-LaunchpadApp::LaunchpadApp(int argc, char** argv)
-  : QApplication(argc, argv, QApplication::GuiServer)
+LaunchpadApp::LaunchpadApp()
+  : KUniqueApplication()
 {
     setApplicationName("Glovebox");
 

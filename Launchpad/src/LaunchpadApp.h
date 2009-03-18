@@ -20,7 +20,7 @@
  *  along with Glovebox.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <QApplication>
+#include <KDE/KUniqueApplication>
 #include <QHash>
 
 class QMainWindow;
@@ -42,13 +42,13 @@ class PageListModel;
 class PluginManager;
 class Launcher;
 
-class LaunchpadApp : public QApplication
+class LaunchpadApp : public KUniqueApplication
 {
 
   Q_OBJECT
 
   public:
-    LaunchpadApp(int argc, char** argv);
+    LaunchpadApp();
 
   private:
     Splash* m_splash;

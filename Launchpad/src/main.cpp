@@ -18,6 +18,8 @@
 */
 
 #include "LaunchpadApp.h"
+#include <KDE/KCmdLineArgs>
+#include <KDE/KAboutData>
 #include <QtPlugin>
 
 Q_IMPORT_PLUGIN(homepage)
@@ -29,7 +31,16 @@ Q_IMPORT_PLUGIN(clockwidget)
 
 int main(int argc, char **argv)
 {
-    LaunchpadApp app(argc, argv);
+    KAboutData about("launchpad",
+                      "launchpad",
+                      ki18n("Launchpad"),
+                      "0.1",
+                      ki18n("Glovebox Home"),
+                      KAboutData::License_GPL_V3);
+    
+    KCmdLineArgs::init(argc, argv, &about);
+    //KCmdLineOptions options;
+    LaunchpadApp app;
 
     return app.exec();
 }
