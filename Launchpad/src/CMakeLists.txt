@@ -48,7 +48,7 @@ add_definitions(${QT_DEFINITIONS})
 add_subdirectory(BasicPlugins)
 
 add_executable(Launchpad ${Launchpad_SRCS})
-target_link_libraries(Launchpad ${QT_LIBRARIES} ${KDE4_KDEUI_LIBS} BasicPlugins gloveui)
+target_link_libraries(Launchpad ${QT_LIBRARIES} ${KDE4_KDEUI_LIBS} ${KDE4_PLASMA_LIBS} BasicPlugins gloveui)
 
 install(TARGETS Launchpad DESTINATION bin)
 install(FILES ${Launchpad_HEADERS} DESTINATION include/Launchpad)

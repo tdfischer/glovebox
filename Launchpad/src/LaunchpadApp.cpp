@@ -49,9 +49,8 @@
 LaunchpadApp::LaunchpadApp()
   : KUniqueApplication()
 {
-    setApplicationName("Glovebox");
 
-    m_splash = new Splash();
+    /*m_splash = new Splash();
     m_splash->show();
     m_splash->showMessage("Starting up");
     
@@ -70,7 +69,6 @@ LaunchpadApp::LaunchpadApp()
     m_splash->showMessage("Loading Themes");
     processEvents();
 
-    m_launcher = new Launcher();
 
     //m_splash->finish(m_launcher);
     
@@ -87,8 +85,9 @@ LaunchpadApp::LaunchpadApp()
     m_splash->showMessage("Welcome.");
     processEvents();
     
-    //GNotify::global()->sound("desktop-login");
+    //GNotify::global()->sound("desktop-login");*/
 
+    m_launcher = new Launcher();
     m_launcher->show();
 }
 

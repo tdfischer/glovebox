@@ -23,6 +23,10 @@
 #include <KDE/KUniqueApplication>
 #include <QHash>
 
+namespace Plasma {
+    class Corona;
+}
+
 class QMainWindow;
 class QTabWidget;
 class QStackedWidget;
