@@ -26,8 +26,8 @@
 #include "PageListDelegate.h"
 #include "Launcher.h"
 
-#include <GSoundLoader.h>
-#include <GIconLoader.h>
+//#include <GSoundLoader.h>
+//#include <GIconLoader.h>
 #include <GNotify.h>
 
 #include <QTimer>
@@ -61,11 +61,11 @@ LaunchpadApp::LaunchpadApp(int argc, char** argv)
     
     m_splash->showMessage("Loading Sounds");
     processEvents();
-    GSoundLoader::global();
+    //GSoundLoader::global();
     
     m_splash->showMessage("Loading Icons");
     processEvents();
-    GIconLoader::global();
+    //GIconLoader::global();
     
     m_splash->showMessage("Loading Themes");
     processEvents();
@@ -87,7 +87,7 @@ LaunchpadApp::LaunchpadApp(int argc, char** argv)
     m_splash->showMessage("Welcome.");
     processEvents();
     
-    GNotify::global()->sound("desktop-login");
+    //GNotify::global()->sound("desktop-login");
 
     m_launcher->show();
 }

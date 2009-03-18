@@ -1,4 +1,7 @@
 find_package(Qt4 REQUIRED)
+find_package(KDE4 REQUIRED)
+include(KDE4Defaults)
+find_package(Phonon REQUIRED)
 
 include(${QT_USE_FILE})
 

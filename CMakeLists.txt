@@ -1,5 +1,5 @@
 project(Glovebox)
-cmake_minimum_required(VERSION 2.4.0)
+cmake_minimum_required(VERSION 2.6)
 
 set(GLOVEBOX_DATA_DIR
   ${CMAKE_INSTALL_PREFIX}/share
@@ -24,7 +24,7 @@ include_directories(${GLOVEUI_INCLUDES})
 
 add_subdirectory(gloveui)
 add_subdirectory(Launchpad)
-add_subdirectory(GpsService)
-add_subdirectory(MapPage)
-add_subdirectory(MediaPlayer)
-add_subdirectory(NetworkStatus)
+#add_subdirectory(GpsService)
+#add_subdirectory(MapPage)
+#add_subdirectory(MediaPlayer)
+#add_subdirectory(NetworkStatus)

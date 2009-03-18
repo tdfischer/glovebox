@@ -1,5 +1,6 @@
 project(NetworkService)
 find_package(Qt4 REQUIRED)
+find_package(Phonon REQUIRED)
 
 set(QT_USE_QTDBUS true)
 set(QT_USE_QTNETWORK true)

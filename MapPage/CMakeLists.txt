@@ -1,5 +1,9 @@
 project(MapPage)
 find_package(Qt4 REQUIRED)
+find_package(KDE4 REQUIRED)
+
+include(KDE4Defaults)
+
 find_package(Marble REQUIRED)
 
 include(${QT_USE_FILE})

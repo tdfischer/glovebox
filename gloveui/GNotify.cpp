@@ -2,7 +2,8 @@
 
 #include "GSoundLoader.h"
 
-#include <phonon/phonon>
+#include <Phonon/MediaObject>
+#include <Phonon/AudioOutput>
 
 GNotify::GNotify()
   : QObject()

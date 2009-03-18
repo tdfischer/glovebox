@@ -1,7 +1,7 @@
 #ifndef GSOUNDLOADER_H
 #define GSOUNDLOADER_H
 
-#include <phonon/phonon>
+#include <Phonon/MediaSource>
 #include "Glovebox.h"
 
 namespace Glovebox

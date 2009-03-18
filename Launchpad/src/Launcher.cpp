@@ -19,7 +19,8 @@ Launcher::Launcher(QWidget* parent)
   : QMainWindow(parent, Qt::Window | Qt::FramelessWindowHint)
 {
   m_pager = new PageManager(this);
-  resize(qApp->desktop()->screenGeometry().size());
+  //resize(qApp->desktop()->screenGeometry().size());
+  resize(600,480);
   m_pages = new QStackedWidget(this);
   //m_pageBar = new QDockWidget(this);
   //m_pageChooser = new QListView(m_pageBar);
