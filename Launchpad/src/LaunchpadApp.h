@@ -39,7 +39,7 @@ class QModelIndex;
 namespace Launchpad
 {
 
-class Splash;
+//class Splash;
 class Page;
 class ServiceManager;
 class PageListModel;
@@ -55,7 +55,7 @@ class LaunchpadApp : public KUniqueApplication
     LaunchpadApp();
 
   private:
-    Splash* m_splash;
+    //Splash* m_splash;
     Launcher* m_launcher;
 };
 

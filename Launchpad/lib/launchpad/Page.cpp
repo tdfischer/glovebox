@@ -26,11 +26,12 @@
 #include <QHBoxLayout>
 #include <QIcon>
 
-#include <GIcon.h>
+#include <KDE/KIcon>
 
-Page::Page()
-  : QObject()
+Page::Page(QObject* parent, const QVariantList &args)
+  : QObject(parent)
 {
+    Q_UNUSED(args);
 }
 
 Page::~Page()
@@ -50,7 +51,7 @@ Page::init()
 
 
   QLabel* iconView = new QLabel(panel);
-  GIcon icon("help-hint");
+  KIcon icon("help-hint");
   iconView->setPixmap(icon.pixmap(iconView->size()));
 
   iconLayout->addWidget(iconView);
@@ -117,12 +118,14 @@ Page::showDocks()
 void
 Page::hideEvent(QHideEvent* event)
 {
+  Q_UNUSED(event);
   hideDocks();
 }
 
 void
 Page::showEvent(QShowEvent* event)
 {
+  Q_UNUSED(event);
   showDocks();
 }
 
@@ -149,6 +152,18 @@ QString
 Page::name() const
 {
   return m_name;
+}
+
+QString
+Page::header() const
+{
+    return m_header;
+}
+
+void
+Page::setHeader(const QString &header)
+{
+    m_header = header;
 }
 
 void

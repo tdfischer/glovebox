@@ -2,14 +2,11 @@
 #define LAUNCHER_H
 
 #include <KDE/KMainWindow>
-#include <QModelIndex>
-#include <QStackedWidget>
-#include <QDockWidget>
-#include <QListView>
 
-namespace Plasma {
-    class Corona;
-    class View;
+class KPageView;
+
+namespace Launchpad {
+    class PageModel;
 }
 
 #include "Launchpad.h"
@@ -27,22 +24,10 @@ class Launcher : public KMainWindow
 
   public:
     Launcher(QWidget* parent = 0, Qt::WindowFlags flags = 0);
-    //void addPage(Page* page);
-
-  private slots:
-    //void switchPage(const QModelIndex &index, const QModelIndex &prev);
-    //void updatePageBarDirection(Qt::DockWidgetArea area);
-    //void pageAdded(Page*);
-    //void addDock(QDockWidget*);
 
   private:
-    //QStackedWidget* m_pages;
-    //QDockWidget* m_pageBar;
-    //QListView* m_pageChooser;
-    //PageManager* m_pager;
-    Plasma::Corona* m_corona;
-    Plasma::View* m_view;
-    Plasma::View* m_panel;
+    KPageView* m_view;
+    PageModel* m_pages;
 };
 
 }

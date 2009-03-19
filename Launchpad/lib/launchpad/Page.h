@@ -20,15 +20,15 @@
  *  along with Glovebox.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <QtPlugin>
-
 #include <QStringList>
 #include <QWidget>
 #include <QString>
 #include <QIcon>
 #include <QDockWidget>
+#include <QtCore/QVariantList>
 
 #include "Launchpad.h"
+#include "version.h"
 
 namespace Launchpad
 {
@@ -39,18 +39,20 @@ namespace Launchpad
  * Pagess are one of the key components to Launchpad.
  */
 
-class Page : public QObject
+class LAUNCHPAD_EXPORT Page : public QObject
 {
   Q_OBJECT
   Q_PROPERTY( QString name READ name WRITE setName );
   Q_PROPERTY( QIcon icon READ icon WRITE setIcon );
+  Q_PROPERTY( QString header READ header WRITE setHeader );
 
   public:
-    Page();
+    Page(QObject* parent, const QVariantList &args);
     virtual ~Page();
     QString name() const;
     void setName(const QString &name);
     void setIcon(const QIcon &icon);
+    void setHeader(const QString &name);
     void setWidget(QWidget* widget);
 
     void addDock(QDockWidget* dock);
@@ -58,6 +60,8 @@ class Page : public QObject
     QList<QDockWidget*> docks() const;
 
     QIcon icon() const;
+    
+    QString header() const;
 
     /**
      * 
@@ -100,13 +104,16 @@ class Page : public QObject
 
   private:
     QString m_name;
+    QString m_header;
     QIcon m_icon;
     QWidget* m_widget;
     QList<QDockWidget*> m_dockWidgets;
 };
 
 }
-
-Q_DECLARE_INTERFACE(Launchpad::Page, "net.wm161.Glovebox.Page/1.0")
-
+#define G_EXPORT_LAUNCHPAD_PAGE(libname, classname) \
+K_PLUGIN_FACTORY(factory, registerPlugin<classname>();) \
+K_EXPORT_PLUGIN(factory("glovebox_page_" #libname)) \
+K_EXPORT_PLUGIN_VERSION(LAUNCHPAD_VERSION)
 #endif
+

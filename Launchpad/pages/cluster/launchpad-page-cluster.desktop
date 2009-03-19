@@ -1,0 +1,16 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Glovebox Home Page
+X-KDE-Library=launchpad_page_cluster
+Type=Service
+ServiceTypes=Launchpad/Page
+GenericName=Home
+Icon=start-here
+X-KDE-ParentApp=launchpad
+
+X-KDE-PluginInfo-Author=Trever Fischer
+X-KDE-PluginInfo-Email=wm161@wm161.net
+X-KDE-PluginInfo-Name=cluster
+X-KDE-PluginInfo-Version=0.1
+X-KDE-PluginInfo-EnabledByDefault=true
+X-KDE-PluginInfo-License=GPL

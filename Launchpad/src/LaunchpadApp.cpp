@@ -21,14 +21,14 @@
 
 #include "Page.h"
 #include "PluginManager.h"
-#include "Splash.h"
+//#include "Splash.h"
 #include "PageListModel.h"
 #include "PageListDelegate.h"
 #include "Launcher.h"
 
 //#include <GSoundLoader.h>
 //#include <GIconLoader.h>
-#include <GNotify.h>
+//#include <GNotify.h>
 
 #include <QTimer>
 #include <QMainWindow>
@@ -87,8 +87,9 @@ LaunchpadApp::LaunchpadApp()
     
     //GNotify::global()->sound("desktop-login");*/
 
-    m_launcher = new Launcher();
+    m_launcher = new Launcher(0);
     m_launcher->show();
+    m_launcher->setWindowState(Qt::WindowFullScreen);
 }
 
 #include "LaunchpadApp.moc"
